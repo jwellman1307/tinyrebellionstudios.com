@@ -244,7 +244,10 @@
     }
 
     .project-card {
-      min-height: 220px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .project-card span {
@@ -260,6 +263,27 @@
     .project-card h3 {
       font-size: 1.55rem;
       margin-bottom: 10px;
+    }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 22px;
+      color: var(--gold);
+      font-weight: 800;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .project-link:hover {
+      color: var(--orange);
+      transform: translateX(4px);
+    }
+
+    .coming-soon {
+      display: inline-block;
+      margin-top: 22px;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.9rem;
     }
 
     .privacy {
@@ -448,43 +472,84 @@
 
       <div class="projects">
         <article class="card project-card">
-          <span>Android App</span>
-          <h3>SpendGuard</h3>
-          <p>
-            A paycheck-focused budgeting app that helps users know what is safe to spend before their next paycheck. Built around local storage, simple manual control, and privacy-first budgeting.
-          </p>
+          <div>
+            <span>Android App</span>
+            <h3>SpendGuard</h3>
+            <p>
+              A paycheck-focused budgeting app that helps users know what is safe to spend before their next paycheck. Built around local storage, simple manual control, and privacy-first budgeting.
+            </p>
+          </div>
+
+          <a
+            class="project-link"
+            href="https://play.google.com/store/apps/details?id=com.tinyrebellionstudios.safespend"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on Google Play →
+          </a>
         </article>
 
         <article class="card project-card">
-          <span>Excel / VBA</span>
-          <h3>Automated Project Tracker</h3>
-          <p>
-            A productivity workbook for organizing projects, tasks, notes, progress, and development planning in one place.
-          </p>
+          <div>
+            <span>Excel / VBA</span>
+            <h3>Automated Project Tracker</h3>
+            <p>
+              A productivity workbook for organizing projects, tasks, notes, progress, and development planning in one place.
+            </p>
+          </div>
+
+          <a
+            class="project-link"
+            href="https://www.etsy.com/listing/4529548538/automated-excel-project-tracker"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on Etsy →
+          </a>
         </article>
 
         <article class="card project-card">
-          <span>Excel Workbook</span>
-          <h3>Cash After Tax Tracker</h3>
-          <p>
-            A workbook for tracking income, expenses, and estimated tax planning for small sellers, creators, and side projects.
-          </p>
+          <div>
+            <span>Excel Workbook</span>
+            <h3>Cash After Tax Tracker</h3>
+            <p>
+              A workbook for tracking income, expenses, and estimated tax planning for small sellers, creators, and side projects.
+            </p>
+          </div>
+
+          <a
+            class="project-link"
+            href="https://www.etsy.com/listing/4532802574/cash-after-tax-tracker-excel-workbook"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on Etsy →
+          </a>
         </article>
 
         <article class="card project-card">
-          <span>Schedule App</span>
-          <h3>OffSync</h3>
-          <p>
-            A schedule-matching app concept designed to help couples, families, and teams find shared days off across different work patterns.
-          </p>
+          <div>
+            <span>Schedule App</span>
+            <h3>OffSync</h3>
+            <p>
+              A schedule-matching app concept designed to help couples, families, and teams find shared days off across different work patterns.
+            </p>
+          </div>
+
+          <span class="coming-soon">In development</span>
         </article>
 
         <article class="card project-card">
-          <span>Game Development</span>
-          <h3>State of Dissent</h3>
-          <p>
-            A game project in development focused on survival, choices, pressure, and resistance inside a tense low-poly world.
-          </p>
+          <div>
+            <span>Game Development</span>
+            <h3>State of Dissent</h3>
+            <p>
+              A game project in development focused on survival, choices, pressure, and resistance inside a tense low-poly world.
+            </p>
+          </div>
+
+          <span class="coming-soon">In development</span>
         </article>
       </div>
     </section>
