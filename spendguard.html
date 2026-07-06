@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SpendGuard | Tiny Rebellion Studios</title>
+  <meta
+    name="description"
+    content="SpendGuard is a privacy-first Android budgeting app that helps users know what is safe to spend before their next paycheck."
+  />
+
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-soft: #0f0f0f;
+      --card: #151515;
+      --text: #f5f5f5;
+      --muted: #b8b8b8;
+      --orange: #ff6a1a;
+      --gold: #ffcc4d;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 20px 60px rgba(255, 106, 26, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255, 106, 26, 0.18), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(255, 204, 77, 0.08), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(5, 5, 5, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 90px 24px 72px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 1.16rem;
+      max-width: 660px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--orange), var(--gold));
+      color: #111;
+      border: none;
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    .app-card {
+      background:
+        radial-gradient(circle, rgba(255, 106, 26, 0.2), transparent 60%),
+        rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .app-card h2 {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .app-card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .status-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .status-item {
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--muted);
+    }
+
+    section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .two-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .privacy-box {
+      background:
+        linear-gradient(135deg, rgba(255, 106, 26, 0.17), rgba(255, 204, 77, 0.07)),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+    }
+
+    .privacy-box h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 18px;
+      letter-spacing: -0.04em;
+    }
+
+    .privacy-box h3 {
+      margin-top: 26px;
+      margin-bottom: 8px;
+      font-size: 1.3rem;
+    }
+
+    .privacy-box p,
+    .privacy-box li {
+      color: var(--muted);
+      max-width: 900px;
+      margin-bottom: 14px;
+    }
+
+    .contact-box {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    .contact-box h2 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .hero,
+      .grid,
+      .two-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav {
+        padding: 14px 18px;
+      }
+
+      .brand span {
+        font-size: 0.78rem;
+      }
+
+      .hero,
+      section {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .privacy-box,
+      .contact-box,
+      .card,
+      .app-card {
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <img src="Images/LogoIcon.png" alt="Tiny Rebellion Studios icon" />
+        <span>Tiny Rebellion Studios</span>
+      </a>
+
+      <nav aria-label="SpendGuard navigation">
+        <a href="index.html">Home</a>
+        <a href="#features">Features</a>
+        <a href="#privacy-policy">Privacy Policy</a>
+        <a href="#support">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Android budgeting app</p>
+
+        <h1>SpendGuard</h1>
+
+        <p class="hero-text">
+          SpendGuard is a paycheck-focused budgeting app that helps you quickly see how much money is safe to spend before your next paycheck.
+        </p>
+
+        <p class="hero-text">
+          It is built for people who want a simple, private way to track available cash, income, bills, expenses, and history without connecting a bank account or creating a login.
+        </p>
+
+        <div class="hero-actions">
+          <a
+            class="button primary"
+            href="https://play.google.com/store/apps/details?id=com.tinyrebellionstudios.safespend"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on Google Play
+          </a>
+
+          <a class="button secondary" href="#privacy-policy">
+            View Privacy Policy
+          </a>
+        </div>
+      </div>
+
+      <div class="app-card">
+        <h2>What it does</h2>
+        <p>
+          SpendGuard helps answer one everyday money question:
+        </p>
+        <p>
+          <strong>How much can I safely spend before my next paycheck?</strong>
+        </p>
+
+        <div class="status-list">
+          <div class="status-item">Status: Published on Google Play</div>
+          <div class="status-item">Account required: No</div>
+          <div class="status-item">Bank connection required: No</div>
+          <div class="status-item">Storage: Local device storage</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-heading">
+        <h2>Simple budgeting between paychecks.</h2>
+        <p>
+          SpendGuard focuses on the money you have available right now and the bills coming up before your next payday.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Track Available Cash</h3>
+          <p>
+            Manually update your available cash so the app reflects what you actually have on hand.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Income and Payday View</h3>
+          <p>
+            Add income sources, choose a primary income, and view your next pay date.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Bills Before Payday</h3>
+          <p>
+            See which bills are due before your next paycheck and mark them paid as you go.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Expense Tracking</h3>
+          <p>
+            Log everyday spending like food, gas, shopping, or other expenses.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>History</h3>
+          <p>
+            Review a history of cash updates, expenses, income, and paid bills.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Privacy-First</h3>
+          <p>
+            No required account, no bank connection, and budgeting data is stored locally on your device.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="details">
+      <div class="section-heading">
+        <h2>Built for clarity, not complexity.</h2>
+        <p>
+          SpendGuard is designed for quick checks, manual control, and simple decisions.
+        </p>
+      </div>
+
+      <div class="two-grid">
+        <div class="card">
+          <h3>Current Features</h3>
+          <ul>
+            <li>Track current cash available</li>
+            <li>Add multiple income sources</li>
+            <li>Set one primary income source</li>
+            <li>Add recurring or one-time bills</li>
+            <li>Mark bills as paid</li>
+            <li>Track expenses</li>
+            <li>View spending and budget history</li>
+            <li>Use light or dark mode</li>
+            <li>Access tutorial and privacy information from Settings</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Monetization</h3>
+          <p>
+            SpendGuard may display banner ads through Google AdMob.
+          </p>
+          <p>
+            A future one-time Remove Ads option is planned through Google Play Billing.
+          </p>
+          <p>
+            Budgeting information entered into SpendGuard is not shared with advertisers by SpendGuard.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy-policy">
+      <div class="privacy-box">
+        <h2>SpendGuard Privacy Policy</h2>
+
+        <p><strong>Last updated:</strong> July 6, 2026</p>
+
+        <p>
+          SpendGuard is developed by Tiny Rebellion Studios. This privacy policy explains how SpendGuard handles information when you use the app.
+        </p>
+
+        <h3>No Account Required</h3>
+        <p>
+          SpendGuard does not require you to create an account, sign in, or provide a username, password, email address, or profile information to use the app.
+        </p>
+
+        <h3>No Bank Connection</h3>
+        <p>
+          SpendGuard does not connect to your bank. The app does not collect banking usernames, banking passwords, account numbers, routing numbers, card numbers, or bank login information.
+        </p>
+
+        <h3>Local Device Storage</h3>
+        <p>
+          Budgeting information you enter into SpendGuard is stored locally on your device. This may include income sources, bill names, bill amounts, due dates, expenses, notes, budget history, app settings, and available cash amounts.
+        </p>
+
+        <p>
+          Tiny Rebellion Studios does not receive or store your manually entered budgeting information on its own servers.
+        </p>
+
+        <h3>Ads</h3>
+        <p>
+          SpendGuard may display banner ads through Google AdMob. AdMob and related Google services may collect or use device, advertising, diagnostic, or usage-related information according to Google's own policies.
+        </p>
+
+        <p>
+          SpendGuard does not share your manually entered budgeting information with advertisers.
+        </p>
+
+        <h3>In-App Purchases</h3>
+        <p>
+          SpendGuard may offer a one-time Remove Ads purchase through Google Play Billing. Purchases are handled by Google Play. Tiny Rebellion Studios does not receive your full payment card number or banking information.
+        </p>
+
+        <h3>Data Deletion</h3>
+        <p>
+          Because SpendGuard stores budgeting information locally on your device, you can delete app data by clearing the app's storage through your Android settings or by uninstalling the app.
+        </p>
+
+        <h3>No Selling Personal Information</h3>
+        <p>
+          Tiny Rebellion Studios does not sell your personal information.
+        </p>
+
+        <h3>Children's Privacy</h3>
+        <p>
+          SpendGuard is intended for general budgeting use and is not directed toward children. The app is not designed to knowingly collect personal information from children.
+        </p>
+
+        <h3>Changes to This Policy</h3>
+        <p>
+          This privacy policy may be updated as SpendGuard changes. The updated version will be posted on this page with a revised date.
+        </p>
+
+        <h3>Contact</h3>
+        <p>
+          Questions about SpendGuard or this privacy policy can be sent to:
+        </p>
+
+        <p>
+          <a href="mailto:tinyrebellionstudios@gmail.com">tinyrebellionstudios@gmail.com</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="support">
+      <div class="contact-box">
+        <div>
+          <h2>Support</h2>
+          <p>
+            Questions, bug reports, or feedback for SpendGuard can be sent by email.
+          </p>
+        </div>
+
+        <a class="button primary" href="mailto:tinyrebellionstudios@gmail.com">
+          tinyrebellionstudios@gmail.com
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Tiny Rebellion Studios. SpendGuard is built with privacy-first principles.
+  </footer>
+</body>
+</html>
