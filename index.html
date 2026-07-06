@@ -4,42 +4,478 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tiny Rebellion Studios</title>
+  <meta name="description" content="Tiny Rebellion Studios creates privacy-first apps, Excel tools, and game projects built to solve everyday problems." />
+
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-soft: #0f0f0f;
+      --card: #151515;
+      --text: #f5f5f5;
+      --muted: #b8b8b8;
+      --orange: #ff6a1a;
+      --gold: #ffcc4d;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 20px 60px rgba(255, 106, 26, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255, 106, 26, 0.16), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(5, 5, 5, 0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 90px 24px 70px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 52px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      transition: 0.2s ease;
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--orange), var(--gold));
+      color: #111;
+      border: none;
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .logo-card {
+      background: radial-gradient(circle, rgba(255, 106, 26, 0.18), transparent 60%);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .logo-card img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+    }
+
+    section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .section-heading {
+      max-width: 740px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project-card {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card span {
+      color: var(--orange);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .project-card h3 {
+      font-size: 1.55rem;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+    }
+
+    .privacy {
+      background:
+        linear-gradient(135deg, rgba(255, 106, 26, 0.16), rgba(255, 204, 77, 0.06)),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 42px;
+    }
+
+    .privacy h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 18px;
+      letter-spacing: -0.04em;
+    }
+
+    .privacy p {
+      color: var(--muted);
+      max-width: 850px;
+      font-size: 1.08rem;
+    }
+
+    .contact-box {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 60px;
+      }
+
+      .logo-card {
+        max-width: 460px;
+      }
+
+      .mission-grid,
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Tiny Rebellion Studios</h1>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#">
+        <img src="Images/LogoIcon.png" alt="Tiny Rebellion Studios icon" />
+        <span>Tiny Rebellion Studios</span>
+      </a>
 
-  <p>Privacy-first apps, Excel tools, and game projects.</p>
+      <nav>
+        <a href="#mission">Mission</a>
+        <a href="#projects">Projects</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <h2>Mission</h2>
-  <p>
-    Tiny Rebellion Studios creates practical, high-quality software that helps people solve everyday problems while respecting their privacy.
-    Technology should work for the user — not the other way around.
-  </p>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Privacy-first software</div>
+        <h1>Small tools. Real problems. No unnecessary data.</h1>
+        <p>
+          Tiny Rebellion Studios builds practical apps, Excel tools, and game projects for people who want useful software without giving up control of their information.
+        </p>
 
-  <p>
-    Our products are designed to be simple, reliable, and transparent. We collect only what is necessary and keep users in control of their own data whenever possible.
-  </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">View Projects</a>
+          <a class="button secondary" href="#privacy">Our Privacy Rule</a>
+        </div>
+      </div>
 
-  <h2>Projects</h2>
-  <ul>
-    <li><strong>SpendGuard</strong> — Paycheck-focused budgeting app that helps users know what is safe to spend before their next paycheck.</li>
-    <li><strong>Automated Project Tracker</strong> — Excel/VBA productivity workbook for organizing projects, tasks, notes, and progress.</li>
-    <li><strong>Cash After Tax Tracker</strong> — Excel workbook for tracking income, expenses, and tax planning.</li>
-    <li><strong>OffSync</strong> — Schedule-matching app that helps people find shared days off.</li>
-    <li><strong>State of Dissent</strong> — Game project currently in development.</li>
-  </ul>
+      <div class="logo-card">
+        <img src="Images/LogoBlack.png" alt="Tiny Rebellion Studios logo" />
+      </div>
+    </section>
 
-  <h2>Privacy</h2>
-  <p>
-    Privacy is the most important rule at Tiny Rebellion Studios. Whenever possible, our tools are built to avoid unnecessary accounts, logins, cloud storage, or personal data collection.
-  </p>
+    <section id="mission">
+      <div class="section-heading">
+        <h2>Built for people who just want the tool to work.</h2>
+        <p>
+          The studio focuses on simple, reliable products that solve everyday problems without turning the user into the product.
+        </p>
+      </div>
 
-  <p>
-    SpendGuard stores budgeting information locally on the user's device.
-  </p>
+      <div class="mission-grid">
+        <div class="card">
+          <h3>Practical</h3>
+          <p>
+            Every project starts with a real problem: budgeting, organizing work, planning schedules, or building better systems.
+          </p>
+        </div>
 
-  <h2>Contact</h2>
-  <p>tinyrebellionstudios@gmail.com.</p>
+        <div class="card">
+          <h3>Private</h3>
+          <p>
+            We avoid unnecessary accounts, logins, cloud storage, and personal data collection whenever possible.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Transparent</h3>
+          <p>
+            Users should understand what a tool does, what it stores, and how it helps them before they use it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-heading">
+        <h2>Current projects</h2>
+        <p>
+          A growing collection of apps, workbooks, and game systems under the Tiny Rebellion Studios brand.
+        </p>
+      </div>
+
+      <div class="projects">
+        <div class="card project-card">
+          <div>
+            <span>Android App</span>
+            <h3>SpendGuard</h3>
+            <p>
+              A paycheck-focused budgeting app that helps users know what is safe to spend before their next paycheck. Built around local storage and simple manual control.
+            </p>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <span>Excel / VBA</span>
+            <h3>Automated Project Tracker</h3>
+            <p>
+              A productivity workbook for organizing projects, tasks, notes, progress, and development planning in one place.
+            </p>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <span>Excel Workbook</span>
+            <h3>Cash After Tax Tracker</h3>
+            <p>
+              A workbook for tracking income, expenses, and estimated tax planning for small sellers, creators, and side projects.
+            </p>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <span>Schedule App</span>
+            <h3>OffSync</h3>
+            <p>
+              A schedule-matching app concept designed to help couples, families, and teams find shared days off across different work patterns.
+            </p>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <span>Game Development</span>
+            <h3>State of Dissent</h3>
+            <p>
+              A game project in development focused on survival, choices, pressure, and resistance inside a tense low-poly world.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="privacy">
+        <h2>Privacy is the rule.</h2>
+        <p>
+          Privacy is the most important principle at Tiny Rebellion Studios. Whenever possible, our tools are designed to work without unnecessary accounts, logins, cloud storage, tracking, or personal data collection.
+        </p>
+        <br />
+        <p>
+          SpendGuard, for example, stores budgeting information locally on the user's device. The goal is simple: useful software that respects the person using it.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-box">
+        <div>
+          <h2>Contact</h2>
+          <p>Questions, feedback, or support requests can be sent by email.</p>
+        </div>
+
+        <a class="button primary" href="mailto:tinyrebellionstudios@gmail.com">
+          tinyrebellionstudios@gmail.com
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Tiny Rebellion Studios. Built with privacy-first principles.
+  </footer>
 </body>
 </html>
