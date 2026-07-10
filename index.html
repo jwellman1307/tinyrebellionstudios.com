@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Tiny Rebellion Studios creates privacy-first apps, Excel tools, interactive learning products, and independent games."
+    content="Tiny Rebellion Studios creates privacy-first apps, automated Excel tools, and independent game projects."
   />
 
   <style>
@@ -37,7 +37,12 @@
     }
 
     body {
+      min-height: 100vh;
+
       font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+
+      color: var(--text);
 
       background:
         radial-gradient(
@@ -51,10 +56,6 @@
           transparent 24%
         ),
         var(--bg);
-
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
     }
 
     a {
@@ -86,7 +87,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 20px;
     }
 
@@ -135,8 +135,8 @@
 
       display: grid;
       grid-template-columns: 1.06fr 0.94fr;
-      gap: 64px;
       align-items: center;
+      gap: 64px;
     }
 
     .eyebrow,
@@ -198,6 +198,7 @@
 
     .button.primary {
       color: #111;
+
       background: linear-gradient(
         135deg,
         var(--orange),
@@ -415,6 +416,18 @@
       border-top: 1px solid var(--border);
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+
     @media (max-width: 900px) {
       nav {
         display: none;
@@ -503,8 +516,8 @@
 
         <p class="hero-text">
           Tiny Rebellion Studios builds practical apps, automated Excel tools,
-          interactive learning products, and independent games—with privacy and
-          user control treated as requirements, not extras.
+          and independent games—with privacy and user control treated as
+          requirements, not extras.
         </p>
 
         <div class="hero-actions">
@@ -544,16 +557,21 @@
 
       <div class="mission-grid">
         <article class="card">
-          <h3>Practical</h3>
+          <h3>
+            Practical
+          </h3>
 
           <p>
             Every project starts with a real need: budgeting, organizing work,
-            learning Excel, coordinating schedules, or building better systems.
+            tracking finances, coordinating schedules, or building better
+            systems.
           </p>
         </article>
 
         <article class="card">
-          <h3>Private</h3>
+          <h3>
+            Private
+          </h3>
 
           <p>
             Whenever possible, our tools avoid unnecessary accounts, logins,
@@ -562,7 +580,9 @@
         </article>
 
         <article class="card">
-          <h3>Transparent</h3>
+          <h3>
+            Transparent
+          </h3>
 
           <p>
             Users should understand what a tool does, what it stores, and what
@@ -583,8 +603,8 @@
         </h2>
 
         <p>
-          Each area has its own page, so the homepage can remain focused as the
-          studio adds more apps, workbooks, learning products, and games.
+          Browse practical apps, automated Excel tools, and independent game
+          projects from Tiny Rebellion Studios.
         </p>
       </div>
 
@@ -600,8 +620,8 @@
             </h3>
 
             <p>
-              Practical apps designed around clear features, local control, and
-              minimal data collection.
+              Practical apps designed around clear features, local control,
+              and minimal data collection.
             </p>
           </div>
 
@@ -613,7 +633,7 @@
         <article class="card category-card">
           <div>
             <span class="category-label">
-              Excel Tools &amp; Learning
+              Excel Tools
             </span>
 
             <h3>
@@ -621,8 +641,8 @@
             </h3>
 
             <p>
-              Automated trackers, practical finance tools, and future
-              interactive Excel learning products.
+              Automated project, finance, income, expense, and business
+              tracking tools built for practical workflows.
             </p>
           </div>
 
