@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>SpendGuard | Tiny Rebellion Studios</title>
+
+  <meta
+    name="description"
+    content="SpendGuard is a privacy-first budgeting app that helps you understand what is safe to spend before your next paycheck."
+  />
+
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-soft: #0d0d0d;
+      --card: #151515;
+      --text: #f5f5f5;
+      --muted: #b8b8b8;
+      --orange: #ff6a1a;
+      --gold: #ffcc4d;
+      --teal: #5e9c96;
+      --teal-light: #87c8c1;
+      --border: rgba(255, 255, 255, 0.12);
+      --border-strong: rgba(255, 170, 70, 0.28);
+      --shadow: 0 20px 60px rgba(255, 106, 26, 0.14);
+      --shadow-soft: 0 16px 42px rgba(0, 0, 0, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255, 106, 26, 0.16),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 85% 45%,
+          rgba(94, 156, 150, 0.12),
+          transparent 28%
+        ),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      background: rgba(5, 5, 5, 0.88);
+      backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 82px 24px;
+    }
+
+    .hero {
+      min-height: 690px;
+      padding-top: 88px;
+
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .feature-label {
+      color: var(--orange);
+
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+    }
+
+    .hero-text {
+      max-width: 680px;
+      margin-bottom: 30px;
+
+      color: var(--muted);
+      font-size: 1.17rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      padding: 14px 20px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      font-weight: 800;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .button.primary {
+      color: #111;
+
+      background: linear-gradient(
+        135deg,
+        var(--orange),
+        var(--gold)
+      );
+
+      border: none;
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .phone-area {
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone-shell {
+      width: min(360px, 100%);
+      padding: 14px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.15),
+          rgba(255, 255, 255, 0.025)
+        );
+
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 44px;
+
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 70px rgba(94, 156, 150, 0.15);
+    }
+
+    .phone-screen {
+      min-height: 620px;
+      padding: 24px 20px;
+
+      color: #26364a;
+      background: #f6f8fa;
+
+      border-radius: 32px;
+      overflow: hidden;
+    }
+
+    .phone-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 26px;
+    }
+
+    .phone-brand {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .phone-version {
+      color: #6e7b89;
+      font-size: 0.72rem;
+    }
+
+    .balance-card {
+      padding: 24px;
+      margin-bottom: 16px;
+
+      color: white;
+
+      background: linear-gradient(
+        145deg,
+        #477d78,
+        var(--teal)
+      );
+
+      border-radius: 24px;
+
+      box-shadow: 0 14px 30px rgba(94, 156, 150, 0.3);
+    }
+
+    .balance-label {
+      margin-bottom: 6px;
+
+      font-size: 0.78rem;
+      opacity: 0.88;
+    }
+
+    .balance-number {
+      margin-bottom: 4px;
+
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .balance-subtext {
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
+
+    .phone-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+
+      margin-bottom: 16px;
+    }
+
+    .phone-card {
+      padding: 16px;
+
+      background: white;
+      border-radius: 18px;
+
+      box-shadow: 0 8px 22px rgba(38, 54, 74, 0.08);
+    }
+
+    .phone-card-label {
+      margin-bottom: 6px;
+
+      color: #73808d;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+    }
+
+    .phone-card-value {
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .bills-card {
+      padding: 18px;
+
+      background: white;
+      border-radius: 20px;
+
+      box-shadow: 0 8px 22px rgba(38, 54, 74, 0.08);
+    }
+
+    .bills-title {
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .bill-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+
+      padding: 10px 0;
+
+      color: #566474;
+      font-size: 0.82rem;
+
+      border-bottom: 1px solid #edf0f2;
+    }
+
+    .bill-row:last-child {
+      border-bottom: none;
+    }
+
+    .section-heading {
+      max-width: 790px;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 14px;
+
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 28px;
+
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.065),
+        rgba(255, 255, 255, 0.025)
+      );
+
+      border: 1px solid var(--border);
+      border-radius: 22px;
+
+      box-shadow: var(--shadow-soft);
+    }
+
+    .feature-card {
+      min-height: 250px;
+
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card h3 {
+      margin: 12px 0;
+
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #111;
+
+      background: linear-gradient(
+        135deg,
+        var(--orange),
+        var(--gold)
+      );
+
+      border-radius: 50%;
+
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin-bottom: 10px;
+      font-size: 1.35rem;
+    }
+
+    .step p {
+      color: var(--muted);
+    }
+
+    .privacy-panel {
+      padding: 46px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+
+      background:
+        radial-gradient(
+          circle at 88% 50%,
+          rgba(94, 156, 150, 0.2),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(255, 106, 26, 0.14),
+          rgba(255, 204, 77, 0.05)
+        ),
+        var(--card);
+
+      border: 1px solid var(--border);
+      border-radius: 28px;
+
+      box-shadow: var(--shadow);
+    }
+
+    .privacy-panel h2 {
+      margin: 10px 0 16px;
+
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .privacy-panel p {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .privacy-mark {
+      width: 140px;
+      height: 140px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--teal-light);
+
+      background: rgba(94, 156, 150, 0.1);
+
+      border: 1px solid rgba(135, 200, 193, 0.25);
+      border-radius: 50%;
+
+      font-size: 3.5rem;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+    }
+
+    .detail-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+    }
+
+    .detail-card p {
+      margin-bottom: 12px;
+      color: var(--muted);
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 10px;
+
+      list-style: none;
+    }
+
+    .detail-list li {
+      position: relative;
+      padding-left: 24px;
+
+      color: var(--muted);
+    }
+
+    .detail-list li::before {
+      content: "✓";
+
+      position: absolute;
+      left: 0;
+
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .support-box {
+      padding: 36px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+
+      background:
+        radial-gradient(
+          circle at 90% 50%,
+          rgba(255, 106, 26, 0.12),
+          transparent 30%
+        ),
+        var(--bg-soft);
+
+      border: 1px solid var(--border);
+      border-radius: 24px;
+
+      box-shadow: var(--shadow-soft);
+    }
+
+    .support-box h2 {
+      margin-bottom: 8px;
+      font-size: 2rem;
+    }
+
+    .support-box p {
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 28px 24px;
+
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 920px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding-top: 64px;
+      }
+
+      .phone-area {
+        justify-content: flex-start;
+      }
+
+      .phone-shell {
+        max-width: 380px;
+      }
+
+      .feature-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .privacy-panel,
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .privacy-mark {
+        display: none;
+      }
+
+      .support-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        padding: 14px 18px;
+      }
+
+      .brand span {
+        font-size: 0.76rem;
+      }
+
+      section {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .card,
+      .privacy-panel,
+      .support-box {
+        border-radius: 18px;
+      }
+
+      .privacy-panel {
+        padding: 30px 24px;
+      }
+
+      .phone-screen {
+        min-height: 580px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <img
+          src="Images/LogoIcon.png"
+          alt="Tiny Rebellion Studios icon"
+        />
+
+        <span>Tiny Rebellion Studios</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="index.html#mission">Mission</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#support">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">
+          Privacy-first budgeting
+        </p>
+
+        <h1>
+          Know what is safe to spend.
+        </h1>
+
+        <p class="hero-text">
+          SpendGuard is a paycheck-focused budgeting app that helps you
+          understand what is available now, what bills are still due, and how
+          much you can safely spend before your next payday.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#features">
+            Explore Features →
+          </a>
+
+          <a class="button secondary" href="apps.html">
+            ← Back to Apps
+          </a>
+        </div>
+      </div>
+
+      <div class="phone-area">
+        <div class="phone-shell">
+          <div class="phone-screen">
+            <div class="phone-top">
+              <span class="phone-brand">
+                SpendGuard
+              </span>
+
+              <span class="phone-version">
+                Dashboard
+              </span>
+            </div>
+
+            <div class="balance-card">
+              <p class="balance-label">
+                Available this pay period
+              </p>
+
+              <p class="balance-number">
+                $624.80
+              </p>
+
+              <p class="balance-subtext">
+                After upcoming bills
+              </p>
+            </div>
+
+            <div class="phone-grid">
+              <div class="phone-card">
+                <p class="phone-card-label">
+                  Per day
+                </p>
+
+                <p class="phone-card-value">
+                  $44.63
+                </p>
+              </div>
+
+              <div class="phone-card">
+                <p class="phone-card-label">
+                  Days left
+                </p>
+
+                <p class="phone-card-value">
+                  14
+                </p>
+              </div>
+            </div>
+
+            <div class="bills-card">
+              <p class="bills-title">
+                Bills due
+              </p>
+
+              <div class="bill-row">
+                <span>Phone</span>
+                <strong>$85.00</strong>
+              </div>
+
+              <div class="bill-row">
+                <span>Insurance</span>
+                <strong>$142.00</strong>
+              </div>
+
+              <div class="bill-row">
+                <span>Subscription</span>
+                <strong>$14.99</strong>
+              </div>
+
+              <div class="bill-row">
+                <span>Internet</span>
+                <strong>$79.00</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-heading">
+        <span class="section-kicker">
+          Core features
+        </span>
+
+        <h2>
+          Budget around your paycheck, not a generic month.
+        </h2>
+
+        <p>
+          SpendGuard focuses on the information you need between now and your
+          next payday without requiring access to your bank account.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="card feature-card">
+          <span class="feature-label">
+            Paycheck planning
+          </span>
+
+          <h3>
+            Available this period
+          </h3>
+
+          <p>
+            See how much money remains after your upcoming bills and starting
+            balance are taken into account.
+          </p>
+        </article>
+
+        <article class="card feature-card">
+          <span class="feature-label">
+            Daily guidance
+          </span>
+
+          <h3>
+            Safe spending per day
+          </h3>
+
+          <p>
+            Break your remaining available amount into a daily number based on
+            how many days remain before payday.
+          </p>
+        </article>
+
+        <article class="card feature-card">
+          <span class="feature-label">
+            Bill tracking
+          </span>
+
+          <h3>
+            Know what is still due
+          </h3>
+
+          <p>
+            Add recurring and one-time bills, mark them paid, and keep your
+            current pay period organized.
+          </p>
+        </article>
+
+        <article class="card feature-card">
+          <span class="feature-label">
+            Income
+          </span>
+
+          <h3>
+            Flexible pay schedules
+          </h3>
+
+          <p>
+            Track weekly, biweekly, monthly, and one-time income while choosing
+            the paycheck that drives your dashboard.
+          </p>
+        </article>
+
+        <article class="card feature-card">
+          <span class="feature-label">
+            Expenses
+          </span>
+
+          <h3>
+            Track everyday spending
+          </h3>
+
+          <p>
+            Record expenses as they happen so your available amount reflects
+            what you have actually spent.
+          </p>
+        </article>
+
+        <article class="card feature-card">
+          <span class="feature-label">
+            History
+          </span>
+
+          <h3>
+            Review past activity
+          </h3>
+
+          <p>
+            Keep a clear history of recorded expenses and budgeting activity
+            without linking an outside financial account.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <span class="section-kicker">
+          How it works
+        </span>
+
+        <h2>
+          Simple setup. Useful answer.
+        </h2>
+
+        <p>
+          SpendGuard is designed to answer one practical question without
+          turning budgeting into a complicated financial system.
+        </p>
+      </div>
+
+      <div class="steps">
+        <article class="card step">
+          <div class="step-number">
+            1
+          </div>
+
+          <h3>
+            Add your income
+          </h3>
+
+          <p>
+            Enter your paycheck amount, pay frequency, and next payday.
+          </p>
+        </article>
+
+        <article class="card step">
+          <div class="step-number">
+            2
+          </div>
+
+          <h3>
+            Add your bills
+          </h3>
+
+          <p>
+            Enter the bills that must be paid before that paycheck arrives.
+          </p>
+        </article>
+
+        <article class="card step">
+          <div class="step-number">
+            3
+          </div>
+
+          <h3>
+            Check your safe amount
+          </h3>
+
+          <p>
+            Use the dashboard to see what remains and what that means per day.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="privacy-panel">
+        <div>
+          <span class="section-kicker">
+            Privacy
+          </span>
+
+          <h2>
+            Your budget stays on your device.
+          </h2>
+
+          <p>
+            SpendGuard does not require a user account or a connection to your
+            bank. Budgeting information is stored locally on the device so you
+            remain in control of the information you enter.
+          </p>
+        </div>
+
+        <div class="privacy-mark" aria-hidden="true">
+          ◈
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <span class="section-kicker">
+          Designed differently
+        </span>
+
+        <h2>
+          Manual control without unnecessary access.
+        </h2>
+      </div>
+
+      <div class="details-grid">
+        <article class="card detail-card">
+          <h3>
+            SpendGuard does not need:
+          </h3>
+
+          <ul class="detail-list">
+            <li>A bank connection</li>
+            <li>A budgeting account</li>
+            <li>Your banking password</li>
+            <li>Cloud storage for your budget</li>
+            <li>Automatic access to your transactions</li>
+          </ul>
+        </article>
+
+        <article class="card detail-card">
+          <h3>
+            You stay in control.
+          </h3>
+
+          <p>
+            SpendGuard uses the information you manually provide to calculate
+            your available balance and daily safe-spending amount.
+          </p>
+
+          <p>
+            This approach requires a little more input from the user, but it
+            avoids giving another service direct access to sensitive financial
+            accounts.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="support">
+      <div class="support-box">
+        <div>
+          <h2>
+            SpendGuard support
+          </h2>
+
+          <p>
+            Questions, feedback, or problems can be sent directly to the studio.
+          </p>
+        </div>
+
+        <a
+          class="button primary"
+          href="mailto:tinyrebellionstudios@gmail.com?subject=SpendGuard Support"
+        >
+          Contact Support →
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Tiny Rebellion Studios. SpendGuard is built with privacy-first principles.
+  </footer>
+</body>
+</html>
