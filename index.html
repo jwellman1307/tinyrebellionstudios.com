@@ -5,22 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Tiny Rebellion Studios</title>
+
   <meta
     name="description"
-    content="Tiny Rebellion Studios creates privacy-first apps, Excel tools, and game projects built to solve everyday problems."
+    content="Tiny Rebellion Studios creates privacy-first apps, Excel tools, interactive learning products, and independent games."
   />
 
   <style>
     :root {
       --bg: #050505;
-      --bg-soft: #0f0f0f;
+      --bg-soft: #0d0d0d;
       --card: #151515;
       --text: #f5f5f5;
       --muted: #b8b8b8;
       --orange: #ff6a1a;
       --gold: #ffcc4d;
       --border: rgba(255, 255, 255, 0.12);
-      --shadow: 0 20px 60px rgba(255, 106, 26, 0.16);
+      --border-strong: rgba(255, 170, 70, 0.28);
+      --shadow: 0 20px 60px rgba(255, 106, 26, 0.14);
+      --shadow-soft: 0 16px 42px rgba(0, 0, 0, 0.32);
     }
 
     * {
@@ -35,10 +38,20 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
+
       background:
-        radial-gradient(circle at top, rgba(255, 106, 26, 0.18), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(255, 204, 77, 0.08), transparent 28%),
+        radial-gradient(
+          circle at top,
+          rgba(255, 106, 26, 0.18),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 82% 72%,
+          rgba(255, 204, 77, 0.07),
+          transparent 24%
+        ),
         var(--bg);
+
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
@@ -50,26 +63,30 @@
     }
 
     img {
-      max-width: 100%;
       display: block;
+      max-width: 100%;
     }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
+
       background: rgba(5, 5, 5, 0.88);
       backdrop-filter: blur(14px);
+
       border-bottom: 1px solid var(--border);
     }
 
     .nav {
-      max-width: 1120px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 18px 24px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 20px;
     }
 
@@ -77,10 +94,11 @@
       display: flex;
       align-items: center;
       gap: 12px;
+
+      font-size: 0.9rem;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-size: 0.9rem;
     }
 
     .brand img {
@@ -93,6 +111,7 @@
       display: flex;
       align-items: center;
       gap: 22px;
+
       color: var(--muted);
       font-size: 0.95rem;
     }
@@ -110,36 +129,46 @@
     }
 
     .hero {
-      max-width: 1120px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 90px 24px 72px;
+      padding: 96px 24px 86px;
+
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 56px;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 64px;
       align-items: center;
     }
 
-    .eyebrow {
+    .eyebrow,
+    .section-kicker,
+    .category-label {
       color: var(--orange);
+
+      font-size: 0.8rem;
       font-weight: 800;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      font-size: 0.82rem;
+    }
+
+    .eyebrow {
       margin-bottom: 18px;
     }
 
     h1 {
-      font-size: clamp(2.8rem, 7vw, 5.8rem);
+      max-width: 760px;
+      margin-bottom: 24px;
+
+      font-size: clamp(2.9rem, 7vw, 5.9rem);
       line-height: 0.95;
       letter-spacing: -0.06em;
-      margin-bottom: 24px;
     }
 
     .hero-text {
+      max-width: 700px;
+      margin-bottom: 32px;
+
       color: var(--muted);
       font-size: 1.16rem;
-      max-width: 660px;
-      margin-bottom: 32px;
     }
 
     .hero-actions {
@@ -152,16 +181,29 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
+
       padding: 14px 20px;
-      border-radius: 999px;
-      font-weight: 800;
+
       border: 1px solid var(--border);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      border-radius: 999px;
+
+      font-weight: 800;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
     }
 
     .button.primary {
-      background: linear-gradient(135deg, var(--orange), var(--gold));
       color: #111;
+      background: linear-gradient(
+        135deg,
+        var(--orange),
+        var(--gold)
+      );
+
       border: none;
     }
 
@@ -177,12 +219,19 @@
     }
 
     .logo-card {
+      padding: 36px;
+
       background:
-        radial-gradient(circle, rgba(255, 106, 26, 0.2), transparent 60%),
+        radial-gradient(
+          circle at center,
+          rgba(255, 106, 26, 0.22),
+          transparent 58%
+        ),
         rgba(255, 255, 255, 0.03);
+
       border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 34px;
+      border-radius: 30px;
+
       box-shadow: var(--shadow);
     }
 
@@ -192,20 +241,26 @@
     }
 
     section {
-      max-width: 1120px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 72px 24px;
+      padding: 82px 24px;
     }
 
     .section-heading {
-      max-width: 760px;
-      margin-bottom: 34px;
+      max-width: 790px;
+      margin-bottom: 36px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 12px;
     }
 
     .section-heading h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.05;
       margin-bottom: 14px;
+
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      line-height: 1.05;
       letter-spacing: -0.04em;
     }
 
@@ -214,62 +269,72 @@
       font-size: 1.05rem;
     }
 
-    .mission-grid {
+    .mission-grid,
+    .category-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
+      padding: 28px;
+
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.065),
+        rgba(255, 255, 255, 0.025)
+      );
+
       border: 1px solid var(--border);
       border-radius: 22px;
-      padding: 26px;
+
+      box-shadow: var(--shadow-soft);
     }
 
     .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 10px;
+      margin: 10px 0;
+
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
     }
 
     .card p {
       color: var(--muted);
     }
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
+    .category-card {
+      min-height: 290px;
 
-    .project-card {
-      min-height: 240px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
     }
 
-    .project-card span {
-      color: var(--orange);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-
-    .project-card h3 {
-      font-size: 1.55rem;
-      margin-bottom: 10px;
+    .category-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow);
     }
 
     .project-link {
-      display: inline-block;
-      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      width: fit-content;
+      margin-top: 24px;
+
       color: var(--gold);
       font-weight: 800;
-      transition: color 0.2s ease, transform 0.2s ease;
+
+      transition:
+        color 0.2s ease,
+        transform 0.2s ease;
     }
 
     .project-link:hover {
@@ -277,51 +342,63 @@
       transform: translateX(4px);
     }
 
-    .coming-soon {
-      display: inline-block;
-      margin-top: 22px;
-      color: var(--muted);
-      font-weight: 800;
-      font-size: 0.9rem;
-    }
-
     .privacy {
+      padding: 44px;
+
       background:
-        linear-gradient(135deg, rgba(255, 106, 26, 0.17), rgba(255, 204, 77, 0.07)),
+        linear-gradient(
+          135deg,
+          rgba(255, 106, 26, 0.17),
+          rgba(255, 204, 77, 0.07)
+        ),
         var(--card);
+
       border: 1px solid var(--border);
       border-radius: 28px;
-      padding: 42px;
+
       box-shadow: var(--shadow);
     }
 
     .privacy h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
       margin-bottom: 18px;
+
+      font-size: clamp(2rem, 4vw, 3rem);
       letter-spacing: -0.04em;
     }
 
     .privacy p {
-      color: var(--muted);
-      max-width: 880px;
-      font-size: 1.08rem;
+      max-width: 900px;
       margin-bottom: 14px;
+
+      color: var(--muted);
+      font-size: 1.08rem;
     }
 
     .contact-box {
+      padding: 32px;
+
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 24px;
-      align-items: center;
-      background: var(--bg-soft);
+
+      background:
+        radial-gradient(
+          circle at 90% 50%,
+          rgba(255, 106, 26, 0.12),
+          transparent 30%
+        ),
+        var(--bg-soft);
+
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 30px;
+
+      box-shadow: var(--shadow-soft);
     }
 
     .contact-box h2 {
-      font-size: 2rem;
       margin-bottom: 6px;
+      font-size: 2rem;
     }
 
     .contact-box p {
@@ -329,29 +406,31 @@
     }
 
     footer {
-      border-top: 1px solid var(--border);
       padding: 28px 24px;
+
       color: var(--muted);
       text-align: center;
       font-size: 0.9rem;
+
+      border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 900px) {
       nav {
         display: none;
       }
 
       .hero {
         grid-template-columns: 1fr;
-        padding-top: 60px;
+        padding-top: 64px;
       }
 
       .logo-card {
-        max-width: 460px;
+        max-width: 520px;
       }
 
       .mission-grid,
-      .projects {
+      .category-grid {
         grid-template-columns: 1fr;
       }
 
@@ -361,13 +440,13 @@
       }
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 560px) {
       .nav {
         padding: 14px 18px;
       }
 
       .brand span {
-        font-size: 0.78rem;
+        font-size: 0.76rem;
       }
 
       .hero,
@@ -394,7 +473,11 @@
   <header>
     <div class="nav">
       <a class="brand" href="index.html">
-        <img src="Images/LogoIcon.png" alt="Tiny Rebellion Studios icon" />
+        <img
+          src="Images/LogoIcon.png"
+          alt="Tiny Rebellion Studios icon"
+        />
+
         <span>Tiny Rebellion Studios</span>
       </a>
 
@@ -410,154 +493,187 @@
   <main>
     <section class="hero">
       <div>
-        <p class="eyebrow">Privacy-first software</p>
+        <p class="eyebrow">
+          Privacy-first software
+        </p>
 
-        <h1>Small tools. Real problems. No unnecessary data.</h1>
+        <h1>
+          Small tools. Real problems. No unnecessary data.
+        </h1>
 
         <p class="hero-text">
-          Tiny Rebellion Studios builds practical apps, Excel tools, and game projects for people who want useful software without giving up control of their information.
+          Tiny Rebellion Studios builds practical apps, automated Excel tools,
+          interactive learning products, and independent games—with privacy and
+          user control treated as requirements, not extras.
         </p>
 
         <div class="hero-actions">
-          <a class="button primary" href="#projects">View Projects</a>
-          <a class="button secondary" href="#privacy">Our Privacy Rule</a>
+          <a class="button primary" href="#projects">
+            View Projects →
+          </a>
+
+          <a class="button secondary" href="#privacy">
+            Our Privacy Rule
+          </a>
         </div>
       </div>
 
       <div class="logo-card">
-        <img src="Images/LogoBlack.png" alt="Tiny Rebellion Studios logo" />
+        <img
+          src="Images/LogoBlack.png"
+          alt="Tiny Rebellion Studios logo"
+        />
       </div>
     </section>
 
     <section id="mission">
       <div class="section-heading">
-        <h2>Built for people who just want the tool to work.</h2>
+        <span class="section-kicker">
+          Mission
+        </span>
+
+        <h2>
+          Built for people who just want the tool to work.
+        </h2>
+
         <p>
-          The studio focuses on simple, reliable products that solve everyday problems without turning the user into the product.
+          The studio focuses on useful, understandable products that solve real
+          problems without turning the person using them into the product.
         </p>
       </div>
 
       <div class="mission-grid">
-        <div class="card">
+        <article class="card">
           <h3>Practical</h3>
-          <p>
-            Every project starts with a real problem: budgeting, organizing work, planning schedules, tracking projects, or building better systems.
-          </p>
-        </div>
 
-        <div class="card">
+          <p>
+            Every project starts with a real need: budgeting, organizing work,
+            learning Excel, coordinating schedules, or building better systems.
+          </p>
+        </article>
+
+        <article class="card">
           <h3>Private</h3>
-          <p>
-            Privacy is the most important rule. Whenever possible, our tools avoid unnecessary accounts, logins, cloud storage, and personal data collection.
-          </p>
-        </div>
 
-        <div class="card">
-          <h3>Transparent</h3>
           <p>
-            Users should understand what a tool does, what it stores, and how it helps them before they use it.
+            Whenever possible, our tools avoid unnecessary accounts, logins,
+            cloud storage, tracking, and personal data collection.
           </p>
-        </div>
+        </article>
+
+        <article class="card">
+          <h3>Transparent</h3>
+
+          <p>
+            Users should understand what a tool does, what it stores, and what
+            they are paying for before they use it.
+          </p>
+        </article>
       </div>
     </section>
 
     <section id="projects">
       <div class="section-heading">
-        <h2>Current projects</h2>
+        <span class="section-kicker">
+          Projects
+        </span>
+
+        <h2>
+          Explore the studio by category.
+        </h2>
+
         <p>
-          A growing collection of apps, workbooks, and game systems under the Tiny Rebellion Studios brand.
+          Each area has its own page, so the homepage can remain focused as the
+          studio adds more apps, workbooks, learning products, and games.
         </p>
       </div>
 
-      <div class="projects">
-        <article class="card project-card">
+      <div class="category-grid">
+        <article class="card category-card">
           <div>
-            <span>Android App</span>
-            <h3>SpendGuard</h3>
+            <span class="category-label">
+              Apps
+            </span>
+
+            <h3>
+              Focused mobile tools
+            </h3>
+
             <p>
-              A paycheck-focused budgeting app that helps users know what is safe to spend before their next paycheck. Built around local storage, simple manual control, and privacy-first budgeting.
+              Practical apps designed around clear features, local control, and
+              minimal data collection.
             </p>
           </div>
 
-          <a class="project-link" href="spendguard.html">
-            View SpendGuard →
+          <a class="project-link" href="apps.html">
+            Browse Apps →
           </a>
         </article>
 
-        <article class="card project-card">
+        <article class="card category-card">
           <div>
-            <span>Excel / VBA</span>
-            <h3>Automated Project Tracker</h3>
+            <span class="category-label">
+              Excel Tools &amp; Learning
+            </span>
+
+            <h3>
+              Workbooks that do more
+            </h3>
+
             <p>
-              A productivity workbook for organizing projects, tasks, notes, progress, and development planning in one place.
+              Automated trackers, practical finance tools, and future
+              interactive Excel learning products.
             </p>
           </div>
 
-          <a
-            class="project-link"
-            href="https://www.etsy.com/listing/4529548538/automated-excel-project-tracker"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View on Etsy
+          <a class="project-link" href="excel.html">
+            Browse Excel Tools →
           </a>
         </article>
 
-        <article class="card project-card">
+        <article class="card category-card">
           <div>
-            <span>Excel Workbook</span>
-            <h3>Cash After Tax Tracker</h3>
+            <span class="category-label">
+              Games
+            </span>
+
+            <h3>
+              Independent game projects
+            </h3>
+
             <p>
-              A workbook for tracking income, expenses, and estimated tax planning for small sellers, creators, and side projects.
+              Systems-focused experiences built around choices, pressure,
+              consequences, and player agency.
             </p>
           </div>
 
-          <a
-            class="project-link"
-            href="https://www.etsy.com/listing/4532802574/cash-after-tax-tracker-excel-workbook"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View on Etsy
+          <a class="project-link" href="games.html">
+            Browse Games →
           </a>
-        </article>
-
-        <article class="card project-card">
-          <div>
-            <span>Schedule App</span>
-            <h3>OffSync</h3>
-            <p>
-              A schedule-matching app concept designed to help couples, families, and teams find shared days off across different work patterns.
-            </p>
-          </div>
-
-          <span class="coming-soon">In development</span>
-        </article>
-
-        <article class="card project-card">
-          <div>
-            <span>Game Development</span>
-            <h3>State of Dissent</h3>
-            <p>
-              A game project in development focused on survival, choices, pressure, and resistance inside a tense low-poly world.
-            </p>
-          </div>
-
-          <span class="coming-soon">In development</span>
         </article>
       </div>
     </section>
 
     <section id="privacy">
       <div class="privacy">
-        <h2>Privacy is the rule.</h2>
+        <span class="section-kicker">
+          Privacy
+        </span>
+
+        <h2>
+          Privacy is the rule.
+        </h2>
 
         <p>
-          Privacy is the most important principle at Tiny Rebellion Studios. Whenever possible, our tools are designed to work without unnecessary accounts, logins, cloud storage, tracking, or personal data collection.
+          Privacy is the most important principle at Tiny Rebellion Studios.
+          Whenever possible, our tools are designed to work without unnecessary
+          accounts, logins, cloud storage, tracking, or personal data collection.
         </p>
 
         <p>
-          SpendGuard, for example, stores budgeting information locally on the user's device. The goal is simple: useful software that respects the person using it.
+          SpendGuard, for example, stores budgeting information locally on the
+          user's device. The goal is simple: useful software that respects the
+          person using it.
         </p>
       </div>
     </section>
@@ -565,12 +681,24 @@
     <section id="contact">
       <div class="contact-box">
         <div>
-          <h2>Contact</h2>
-          <p>Questions, feedback, or support requests can be sent by email.</p>
+          <span class="section-kicker">
+            Contact
+          </span>
+
+          <h2>
+            Questions, feedback, or support?
+          </h2>
+
+          <p>
+            Send an email and include the project name in the subject line.
+          </p>
         </div>
 
-        <a class="button primary" href="mailto:tinyrebellionstudios@gmail.com">
-          tinyrebellionstudios@gmail.com
+        <a
+          class="button primary"
+          href="mailto:tinyrebellionstudios@gmail.com"
+        >
+          Email the Studio →
         </a>
       </div>
     </section>
