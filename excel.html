@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Excel Tools & Learning | Tiny Rebellion Studios</title>
+  <title>Excel Tools | Tiny Rebellion Studios</title>
 
   <meta
     name="description"
-    content="Automated Excel workbooks and interactive learning tools from Tiny Rebellion Studios."
+    content="Automated Excel workbooks and practical business tools from Tiny Rebellion Studios."
   />
 
   <style>
@@ -37,7 +37,12 @@
     }
 
     body {
+      min-height: 100vh;
+
       font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+
+      color: var(--text);
 
       background:
         radial-gradient(
@@ -51,10 +56,6 @@
           transparent 24%
         ),
         var(--bg);
-
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
     }
 
     a {
@@ -86,7 +87,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 20px;
     }
 
@@ -129,7 +129,7 @@
     }
 
     .page-hero {
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
       padding: 96px 24px 52px;
 
@@ -318,6 +318,18 @@
       border-top: 1px solid var(--border);
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+
     @media (max-width: 900px) {
       nav {
         display: none;
@@ -378,16 +390,16 @@
   <main>
     <section class="page-hero">
       <p class="eyebrow">
-        Excel Tools &amp; Learning
+        Excel Tools
       </p>
 
       <h1>
-        Automated workbooks and practical learning tools.
+        Automated workbooks for practical workflows.
       </h1>
 
       <p>
-        Trackers, finance tools, and future interactive Excel lessons designed
-        to be useful without being bloated.
+        Project, finance, income, expense, and business tracking tools designed
+        to save time without adding unnecessary complexity.
       </p>
 
       <div class="hero-actions">
@@ -493,16 +505,17 @@
         <article class="card project-card">
           <div>
             <span class="category-label">
-              Interactive Learning
+              Business Tracking
             </span>
 
             <h2>
-              Excel Learning Workbooks
+              Invoice &amp; Payment Tracker
             </h2>
 
             <p>
-              Guided workbook-based lessons designed to teach Excel by doing
-              instead of relying only on videos or passive instructions.
+              A planned workbook for creating an organized invoice log,
+              tracking amounts due, recording payments, monitoring overdue
+              balances, and keeping customer payment activity in one place.
             </p>
 
             <span class="status-pill">
