@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Tiny Rebellion Studios creates privacy-first apps, automated Excel tools, and independent game projects."
+    content="Tiny Rebellion Studios creates practical mobile apps and independent games built around real problems, meaningful choices, and user control."
   />
 
   <style>
@@ -20,6 +20,8 @@
       --muted: #b8b8b8;
       --orange: #ff6a1a;
       --gold: #ffcc4d;
+      --green: #65d28b;
+      --blue: #73b7ff;
       --border: rgba(255, 255, 255, 0.12);
       --border-strong: rgba(255, 170, 70, 0.28);
       --shadow: 0 20px 60px rgba(255, 106, 26, 0.14);
@@ -141,7 +143,7 @@
 
     .eyebrow,
     .section-kicker,
-    .category-label {
+    .project-type {
       color: var(--orange);
 
       font-size: 0.8rem;
@@ -155,7 +157,7 @@
     }
 
     h1 {
-      max-width: 760px;
+      max-width: 800px;
       margin-bottom: 24px;
 
       font-size: clamp(2.9rem, 7vw, 5.9rem);
@@ -270,16 +272,7 @@
       font-size: 1.05rem;
     }
 
-    .mission-grid,
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
     .card {
-      padding: 28px;
-
       background: linear-gradient(
         180deg,
         rgba(255, 255, 255, 0.065),
@@ -292,23 +285,206 @@
       box-shadow: var(--shadow-soft);
     }
 
-    .card h3 {
-      margin: 10px 0;
+    /* Featured project */
 
-      font-size: 1.45rem;
-      letter-spacing: -0.02em;
+    .featured-project {
+      padding: 42px;
+
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: center;
+      gap: 48px;
+
+      background:
+        radial-gradient(
+          circle at 12% 25%,
+          rgba(101, 210, 139, 0.14),
+          transparent 32%
+        ),
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.07),
+          rgba(255, 255, 255, 0.025)
+        );
+
+      border: 1px solid rgba(101, 210, 139, 0.22);
+      border-radius: 30px;
+
+      box-shadow: var(--shadow-soft);
     }
 
-    .card p {
-      color: var(--muted);
+    .project-visual {
+      min-height: 360px;
+      padding: 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(101, 210, 139, 0.18),
+          transparent 58%
+        ),
+        #0b1110;
+
+      border: 1px solid rgba(101, 210, 139, 0.22);
+      border-radius: 24px;
     }
 
-    .category-card {
-      min-height: 290px;
+    .phone-placeholder {
+      width: min(230px, 80%);
+      aspect-ratio: 9 / 18.5;
+      padding: 14px;
 
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+
+      background: #07100d;
+
+      border: 4px solid #272f2c;
+      border-radius: 30px;
+
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .phone-speaker {
+      width: 54px;
+      height: 5px;
+      margin: 0 auto 18px;
+
+      background: #36433e;
+      border-radius: 999px;
+    }
+
+    .mock-screen {
+      flex: 1;
+      padding: 18px;
+
+      background: linear-gradient(
+        180deg,
+        rgba(101, 210, 139, 0.16),
+        rgba(255, 255, 255, 0.03)
+      );
+
+      border-radius: 19px;
+    }
+
+    .mock-title {
+      margin-bottom: 18px;
+
+      color: #d9ffea;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .mock-amount {
+      margin-bottom: 6px;
+
+      color: #ffffff;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .mock-label {
+      margin-bottom: 22px;
+
+      color: #91a99f;
+      font-size: 0.78rem;
+    }
+
+    .mock-row {
+      height: 42px;
+      margin-top: 10px;
+
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+    }
+
+    .featured-copy h2 {
+      margin: 14px 0 18px;
+
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .featured-copy > p {
+      margin-bottom: 24px;
+
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      width: fit-content;
+      padding: 7px 12px;
+
+      color: #d7ffdf;
+      background: rgba(101, 210, 139, 0.11);
+
+      border: 1px solid rgba(101, 210, 139, 0.25);
+      border-radius: 999px;
+
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(101, 210, 139, 0.75);
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 11px;
+
+      margin: 24px 0 30px;
+
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+
+      color: #d8d8d8;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    /* Project cards */
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      min-height: 480px;
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
 
       transition:
         transform 0.22s ease,
@@ -316,10 +492,117 @@
         box-shadow 0.22s ease;
     }
 
-    .category-card:hover {
+    .project-card:hover {
       transform: translateY(-4px);
       border-color: var(--border-strong);
       box-shadow: var(--shadow);
+    }
+
+    .project-image-placeholder {
+      min-height: 210px;
+      padding: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-image-placeholder.productive {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 204, 77, 0.17),
+          transparent 55%
+        ),
+        #15120a;
+    }
+
+    .project-image-placeholder.dissent {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 106, 26, 0.18),
+          transparent 55%
+        ),
+        #140b08;
+    }
+
+    .project-image-placeholder.offsync {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(115, 183, 255, 0.17),
+          transparent 55%
+        ),
+        #08101a;
+    }
+
+    .placeholder-symbol {
+      width: 108px;
+      height: 108px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+      background: rgba(255, 255, 255, 0.06);
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 26px;
+
+      font-size: 2.4rem;
+      font-weight: 900;
+
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .project-card-content {
+      flex: 1;
+      padding: 28px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+
+      margin-bottom: 12px;
+    }
+
+    .project-status {
+      padding: 5px 9px;
+
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.045);
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .project-card h3 {
+      margin-bottom: 12px;
+
+      font-size: 1.65rem;
+      letter-spacing: -0.03em;
+    }
+
+    .project-card p {
+      margin-bottom: 24px;
+
+      color: var(--muted);
     }
 
     .project-link {
@@ -328,7 +611,7 @@
       gap: 8px;
 
       width: fit-content;
-      margin-top: 24px;
+      margin-top: auto;
 
       color: var(--gold);
       font-weight: 800;
@@ -342,6 +625,39 @@
       color: var(--orange);
       transform: translateX(4px);
     }
+
+    /* Principles */
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .principle-card {
+      padding: 28px;
+    }
+
+    .principle-number {
+      color: var(--orange);
+
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .principle-card h3 {
+      margin: 10px 0;
+
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .principle-card p {
+      color: var(--muted);
+    }
+
+    /* Privacy */
 
     .privacy {
       padding: 44px;
@@ -374,6 +690,8 @@
       color: var(--muted);
       font-size: 1.08rem;
     }
+
+    /* Contact */
 
     .contact-box {
       padding: 32px;
@@ -428,13 +746,17 @@
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 950px) {
       nav {
         display: none;
       }
 
-      .hero {
+      .hero,
+      .featured-project {
         grid-template-columns: 1fr;
+      }
+
+      .hero {
         padding-top: 64px;
       }
 
@@ -442,9 +764,21 @@
         max-width: 520px;
       }
 
-      .mission-grid,
-      .category-grid {
+      .featured-project {
+        gap: 34px;
+      }
+
+      .project-visual {
+        min-height: 320px;
+      }
+
+      .project-grid,
+      .principles-grid {
         grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        min-height: 0;
       }
 
       .contact-box {
@@ -468,14 +802,32 @@
         padding-right: 18px;
       }
 
+      .hero {
+        padding-bottom: 56px;
+      }
+
       .button {
         width: 100%;
+      }
+
+      .featured-project {
+        padding: 24px;
+      }
+
+      .project-visual {
+        min-height: 280px;
+        padding: 18px;
+      }
+
+      .phone-placeholder {
+        width: 195px;
       }
 
       .privacy,
       .contact-box,
       .card,
-      .logo-card {
+      .logo-card,
+      .featured-project {
         border-radius: 18px;
       }
     }
@@ -495,8 +847,8 @@
       </a>
 
       <nav aria-label="Main navigation">
-        <a href="#mission">Mission</a>
         <a href="#projects">Projects</a>
+        <a href="#principles">Studio</a>
         <a href="#privacy">Privacy</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -504,29 +856,31 @@
   </header>
 
   <main>
+    <!-- Hero -->
+
     <section class="hero">
       <div>
         <p class="eyebrow">
-          Privacy-first software
+          Independent apps and games
         </p>
 
         <h1>
-          Small tools. Real problems. No unnecessary data.
+          Small projects with something real to say.
         </h1>
 
         <p class="hero-text">
-          Tiny Rebellion Studios builds practical apps, automated Excel tools,
-          and independent games—with privacy and user control treated as
-          requirements, not extras.
+          Tiny Rebellion Studios creates practical apps and systems-driven
+          games inspired by real-life pressure, difficult choices, work,
+          money, survival, and the small decisions that shape everyday life.
         </p>
 
         <div class="hero-actions">
           <a class="button primary" href="#projects">
-            View Projects →
+            Explore Projects →
           </a>
 
-          <a class="button secondary" href="#privacy">
-            Our Privacy Rule
+          <a class="button secondary" href="#principles">
+            About the Studio
           </a>
         </div>
       </div>
@@ -539,140 +893,274 @@
       </div>
     </section>
 
-    <section id="mission">
+    <!-- Featured project -->
+
+    <section id="projects">
       <div class="section-heading">
         <span class="section-kicker">
-          Mission
+          Featured Project
         </span>
 
         <h2>
-          Built for people who just want the tool to work.
+          Built to help you make it between checks.
         </h2>
 
         <p>
-          The studio focuses on useful, understandable products that solve real
-          problems without turning the person using them into the product.
+          Between Checks is the studio's primary mobile app and the project
+          currently closest to release.
         </p>
       </div>
 
-      <div class="mission-grid">
-        <article class="card">
+      <article class="featured-project">
+        <div class="project-visual">
+          <!--
+            Replace this phone placeholder with a real screenshot later.
+
+            Example:
+
+            <img
+              src="Images/BetweenChecksDashboard.png"
+              alt="Between Checks dashboard"
+            />
+          -->
+
+          <div class="phone-placeholder">
+            <div class="phone-speaker"></div>
+
+            <div class="mock-screen">
+              <div class="mock-title">Between Checks</div>
+
+              <div class="mock-amount">$427.50</div>
+
+              <div class="mock-label">
+                Available until your next check
+              </div>
+
+              <div class="mock-row"></div>
+              <div class="mock-row"></div>
+              <div class="mock-row"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-copy">
+          <div class="status">
+            <span class="status-dot"></span>
+            Preparing for release
+          </div>
+
+          <h2>
+            Between Checks
+          </h2>
+
+          <p>
+            A privacy-focused budgeting app for people who need to know what
+            they can safely spend before their next paycheck—not several
+            months from now.
+          </p>
+
+          <ul class="feature-list">
+            <li>See what is available until your next payday</li>
+            <li>Track upcoming bills and mark them paid</li>
+            <li>Understand your safe daily spending amount</li>
+            <li>Test purchases before committing to them</li>
+            <li>No bank connection or account required</li>
+          </ul>
+
+          <!--
+            This currently links to your existing SpendGuard page.
+            Rename spendguard.html later if you decide to change the filename.
+          -->
+
+          <a class="button primary" href="spendguard.html">
+            Explore Between Checks →
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Additional projects -->
+
+    <section>
+      <div class="section-heading">
+        <span class="section-kicker">
+          More From the Studio
+        </span>
+
+        <h2>
+          Projects at different stages of development.
+        </h2>
+
+        <p>
+          Tiny Rebellion Studios develops focused mobile tools alongside
+          independent games built around systems, consequences, and player
+          choice.
+        </p>
+      </div>
+
+      <div class="project-grid">
+        <!-- Definitely Productive -->
+
+        <article class="card project-card">
+          <div class="project-image-placeholder productive">
+            <!-- Replace this placeholder with a screenshot later. -->
+            <div class="placeholder-symbol">DP</div>
+          </div>
+
+          <div class="project-card-content">
+            <div class="project-meta">
+              <span class="project-type">Game</span>
+
+              <span class="project-status">
+                Active Development
+              </span>
+            </div>
+
+            <h3>
+              Definitely Productive
+            </h3>
+
+            <p>
+              A satirical office-life game about surviving the workweek,
+              managing energy and stress, appearing productive, and climbing
+              a deeply questionable corporate ladder.
+            </p>
+
+            <a class="project-link" href="games.html">
+              View Project →
+            </a>
+          </div>
+        </article>
+
+        <!-- State of Dissent -->
+
+        <article class="card project-card">
+          <div class="project-image-placeholder dissent">
+            <!-- Replace this placeholder with a screenshot later. -->
+            <div class="placeholder-symbol">SD</div>
+          </div>
+
+          <div class="project-card-content">
+            <div class="project-meta">
+              <span class="project-type">Game</span>
+
+              <span class="project-status">
+                Long-Term Development
+              </span>
+            </div>
+
+            <h3>
+              State of Dissent
+            </h3>
+
+            <p>
+              A narrative survival game about work, family, limited time,
+              resistance, and the consequences of the choices ordinary people
+              make under extraordinary pressure.
+            </p>
+
+            <a class="project-link" href="games.html">
+              View Project →
+            </a>
+          </div>
+        </article>
+
+        <!-- OffSync -->
+
+        <article class="card project-card">
+          <div class="project-image-placeholder offsync">
+            <!-- Replace this placeholder with a screenshot later. -->
+            <div class="placeholder-symbol">OS</div>
+          </div>
+
+          <div class="project-card-content">
+            <div class="project-meta">
+              <span class="project-type">App</span>
+
+              <span class="project-status">
+                Early Development
+              </span>
+            </div>
+
+            <h3>
+              OffSync
+            </h3>
+
+            <p>
+              A scheduling app concept designed to help couples, families, and
+              friends compare rotating work schedules and quickly find the days
+              they are actually free together.
+            </p>
+
+            <a class="project-link" href="apps.html">
+              View Project →
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Studio principles -->
+
+    <section id="principles">
+      <div class="section-heading">
+        <span class="section-kicker">
+          The Studio
+        </span>
+
+        <h2>
+          Built independently and with intention.
+        </h2>
+
+        <p>
+          Every project starts with a recognizable problem, pressure, or
+          experience rather than a list of features looking for a purpose.
+        </p>
+      </div>
+
+      <div class="principles-grid">
+        <article class="card principle-card">
+          <span class="principle-number">01</span>
+
           <h3>
             Practical
           </h3>
 
           <p>
-            Every project starts with a real need: budgeting, organizing work,
-            tracking finances, coordinating schedules, or building better
-            systems.
+            Apps are designed to solve focused, understandable problems without
+            unnecessary complexity getting in the way.
           </p>
         </article>
 
-        <article class="card">
+        <article class="card principle-card">
+          <span class="principle-number">02</span>
+
           <h3>
-            Private
+            Meaningful
           </h3>
 
           <p>
-            Whenever possible, our tools avoid unnecessary accounts, logins,
-            cloud storage, tracking, and personal data collection.
+            Games are built around pressure, consequences, systems, and choices
+            that connect to recognizable human experiences.
           </p>
         </article>
 
-        <article class="card">
+        <article class="card principle-card">
+          <span class="principle-number">03</span>
+
           <h3>
-            Transparent
+            Respectful
           </h3>
 
           <p>
-            Users should understand what a tool does, what it stores, and what
-            they are paying for before they use it.
+            Products should be clear about what they do, what they store, and
+            what the person using them is being asked to provide.
           </p>
         </article>
       </div>
     </section>
 
-    <section id="projects">
-      <div class="section-heading">
-        <span class="section-kicker">
-          Projects
-        </span>
-
-        <h2>
-          Explore the studio by category.
-        </h2>
-
-        <p>
-          Browse practical apps, automated Excel tools, and independent game
-          projects from Tiny Rebellion Studios.
-        </p>
-      </div>
-
-      <div class="category-grid">
-        <article class="card category-card">
-          <div>
-            <span class="category-label">
-              Apps
-            </span>
-
-            <h3>
-              Focused mobile tools
-            </h3>
-
-            <p>
-              Practical apps designed around clear features, local control,
-              and minimal data collection.
-            </p>
-          </div>
-
-          <a class="project-link" href="apps.html">
-            Browse Apps →
-          </a>
-        </article>
-
-        <article class="card category-card">
-          <div>
-            <span class="category-label">
-              Excel Tools
-            </span>
-
-            <h3>
-              Workbooks that do more
-            </h3>
-
-            <p>
-              Automated project, finance, income, expense, and business
-              tracking tools built for practical workflows.
-            </p>
-          </div>
-
-          <a class="project-link" href="excel.html">
-            Browse Excel Tools →
-          </a>
-        </article>
-
-        <article class="card category-card">
-          <div>
-            <span class="category-label">
-              Games
-            </span>
-
-            <h3>
-              Independent game projects
-            </h3>
-
-            <p>
-              Systems-focused experiences built around choices, pressure,
-              consequences, and player agency.
-            </p>
-          </div>
-
-          <a class="project-link" href="games.html">
-            Browse Games →
-          </a>
-        </article>
-      </div>
-    </section>
+    <!-- Privacy -->
 
     <section id="privacy">
       <div class="privacy">
@@ -681,22 +1169,25 @@
         </span>
 
         <h2>
-          Privacy is the rule.
+          Privacy where it matters.
         </h2>
 
         <p>
-          Privacy is the most important principle at Tiny Rebellion Studios.
-          Whenever possible, our tools are designed to work without unnecessary
-          accounts, logins, cloud storage, tracking, or personal data collection.
+          Tiny Rebellion Studios avoids unnecessary accounts, tracking, cloud
+          storage, and personal-data collection whenever the product can work
+          without them.
         </p>
 
         <p>
-          SpendGuard, for example, stores budgeting information locally on the
-          user's device. The goal is simple: useful software that respects the
-          person using it.
+          Between Checks stores budgeting information locally on the user's
+          device and does not require access to a bank account. Financial tools
+          should help people understand their money without demanding control
+          of it.
         </p>
       </div>
     </section>
+
+    <!-- Contact -->
 
     <section id="contact">
       <div class="contact-box">
@@ -725,7 +1216,7 @@
   </main>
 
   <footer>
-    © 2026 Tiny Rebellion Studios. Built with privacy-first principles.
+    © 2026 Tiny Rebellion Studios. Independently designed and developed.
   </footer>
 </body>
 </html>
