@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Privacy-first apps and mobile tools from Tiny Rebellion Studios."
+    content="Practical mobile apps from Tiny Rebellion Studios, including Between Checks and OffSync."
   />
 
   <style>
@@ -20,6 +20,8 @@
       --muted: #b8b8b8;
       --orange: #ff6a1a;
       --gold: #ffcc4d;
+      --green: #65d28b;
+      --blue: #73b7ff;
       --border: rgba(255, 255, 255, 0.12);
       --border-strong: rgba(255, 170, 70, 0.28);
       --shadow: 0 20px 60px rgba(255, 106, 26, 0.14);
@@ -37,7 +39,12 @@
     }
 
     body {
+      min-height: 100vh;
+
       font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+
+      color: var(--text);
 
       background:
         radial-gradient(
@@ -51,10 +58,6 @@
           transparent 24%
         ),
         var(--bg);
-
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
     }
 
     a {
@@ -86,7 +89,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 20px;
     }
 
@@ -212,11 +214,14 @@
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+      gap: 20px;
     }
 
     .card {
-      padding: 28px;
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
 
       background: linear-gradient(
         180deg,
@@ -231,11 +236,7 @@
     }
 
     .project-card {
-      min-height: 300px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      min-height: 540px;
 
       transition:
         transform 0.22s ease,
@@ -247,6 +248,72 @@
       transform: translateY(-4px);
       border-color: var(--border-strong);
       box-shadow: var(--shadow);
+    }
+
+    .project-image {
+      min-height: 270px;
+      padding: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-image.between-checks {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(101, 210, 139, 0.19),
+          transparent 58%
+        ),
+        #0b1110;
+    }
+
+    .project-image.offsync {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(115, 183, 255, 0.17),
+          transparent 58%
+        ),
+        #08101a;
+    }
+
+    .project-image img {
+      max-height: 250px;
+      width: auto;
+
+      filter: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.42));
+    }
+
+    .placeholder-symbol {
+      width: 118px;
+      height: 118px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+      background: rgba(255, 255, 255, 0.06);
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+
+      font-size: 2.5rem;
+      font-weight: 900;
+
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .project-content {
+      flex: 1;
+      padding: 28px;
+
+      display: flex;
+      flex-direction: column;
     }
 
     .project-card h2 {
@@ -261,13 +328,52 @@
       color: var(--muted);
     }
 
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      width: fit-content;
+      margin-top: 18px;
+      padding: 7px 11px;
+
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.035);
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .status-pill.release {
+      color: #d7ffdf;
+      background: rgba(101, 210, 139, 0.11);
+      border-color: rgba(101, 210, 139, 0.25);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+
+      background: var(--green);
+      border-radius: 50%;
+
+      box-shadow: 0 0 12px rgba(101, 210, 139, 0.75);
+    }
+
     .project-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
 
       width: fit-content;
-      margin-top: 24px;
+      margin-top: auto;
+      padding-top: 26px;
 
       color: var(--gold);
       font-weight: 800;
@@ -280,27 +386,6 @@
     .project-link:hover {
       color: var(--orange);
       transform: translateX(4px);
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-
-      width: fit-content;
-      margin-top: 16px;
-      padding: 6px 10px;
-
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.035);
-
-      border: 1px solid var(--border);
-      border-radius: 999px;
-
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      line-height: 1;
-      text-transform: uppercase;
     }
 
     footer {
@@ -320,6 +405,10 @@
 
       .projects-grid {
         grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        min-height: 0;
       }
     }
 
@@ -345,6 +434,14 @@
       .card {
         border-radius: 18px;
       }
+
+      .project-image {
+        min-height: 230px;
+      }
+
+      .project-image img {
+        max-height: 215px;
+      }
     }
   </style>
 </head>
@@ -362,8 +459,8 @@
       </a>
 
       <nav aria-label="Main navigation">
-        <a href="index.html#mission">Mission</a>
         <a href="index.html#projects">Projects</a>
+        <a href="index.html#principles">Studio</a>
         <a href="index.html#privacy">Privacy</a>
         <a href="index.html#contact">Contact</a>
       </nav>
@@ -381,8 +478,8 @@
       </h1>
 
       <p>
-        Practical software designed around local control, understandable
-        features, and minimal data collection.
+        Practical mobile software designed around understandable features,
+        local control, and minimal unnecessary data collection.
       </p>
 
       <div class="hero-actions">
@@ -395,46 +492,70 @@
     <section>
       <div class="projects-grid">
         <article class="card project-card">
-          <div>
-            <span class="category-label">
-              Android App
-            </span>
-
-            <h2>
-              SpendGuard
-            </h2>
-
-            <p>
-              A paycheck-focused budgeting app that helps users understand what
-              is safe to spend before the next payday. Built around local
-              storage, simple manual control, and privacy-first budgeting.
-            </p>
+          <div class="project-image between-checks">
+            <img
+              src="Images/Dashboard_LM.png"
+              alt="Between Checks dashboard showing available cash, safe-to-spend amount, daily spending, and upcoming bills"
+            />
           </div>
 
-          <a class="project-link" href="spendguard.html">
-            View SpendGuard →
-          </a>
+          <div class="project-content">
+            <div>
+              <span class="category-label">
+                Android App
+              </span>
+
+              <h2>
+                Between Checks
+              </h2>
+
+              <p>
+                A paycheck-focused budgeting app that helps people understand
+                what they can safely spend before their next payday. Between
+                Checks tracks available cash, upcoming bills, daily spending,
+                expenses, and income without requiring a bank connection or
+                user account.
+              </p>
+
+              <span class="status-pill release">
+                <span class="status-dot"></span>
+                Preparing for release
+              </span>
+            </div>
+
+            <a class="project-link" href="index.html#between-checks">
+              View Between Checks →
+            </a>
+          </div>
         </article>
 
         <article class="card project-card">
-          <div>
-            <span class="category-label">
-              Schedule App
-            </span>
+          <div class="project-image offsync">
+            <div class="placeholder-symbol">
+              OS
+            </div>
+          </div>
 
-            <h2>
-              OffSync
-            </h2>
+          <div class="project-content">
+            <div>
+              <span class="category-label">
+                Schedule App
+              </span>
 
-            <p>
-              A schedule-matching app concept designed to help couples,
-              families, and teams find shared days off across different work
-              patterns.
-            </p>
+              <h2>
+                OffSync
+              </h2>
 
-            <span class="status-pill">
-              In development
-            </span>
+              <p>
+                A schedule-matching app concept designed to help couples,
+                families, friends, and teams compare rotating work schedules
+                and quickly identify the days they are actually free together.
+              </p>
+
+              <span class="status-pill">
+                Early development
+              </span>
+            </div>
           </div>
         </article>
       </div>
@@ -442,7 +563,7 @@
   </main>
 
   <footer>
-    © 2026 Tiny Rebellion Studios. Built with privacy-first principles.
+    © 2026 Tiny Rebellion Studios. Independently designed and developed.
   </footer>
 </body>
 </html>
