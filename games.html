@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Independent game projects from Tiny Rebellion Studios."
+    content="Independent game projects from Tiny Rebellion Studios, including Definitely Productive and State of Dissent."
   />
 
   <style>
@@ -20,6 +20,7 @@
       --muted: #b8b8b8;
       --orange: #ff6a1a;
       --gold: #ffcc4d;
+      --green: #65d28b;
       --border: rgba(255, 255, 255, 0.12);
       --border-strong: rgba(255, 170, 70, 0.28);
       --shadow: 0 20px 60px rgba(255, 106, 26, 0.14);
@@ -37,7 +38,12 @@
     }
 
     body {
+      min-height: 100vh;
+
       font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+
+      color: var(--text);
 
       background:
         radial-gradient(
@@ -51,10 +57,6 @@
           transparent 24%
         ),
         var(--bg);
-
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
     }
 
     a {
@@ -86,7 +88,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 20px;
     }
 
@@ -212,11 +213,14 @@
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+      gap: 20px;
     }
 
     .card {
-      padding: 28px;
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
 
       background: linear-gradient(
         180deg,
@@ -231,11 +235,7 @@
     }
 
     .project-card {
-      min-height: 315px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      min-height: 540px;
 
       transition:
         transform 0.22s ease,
@@ -247,6 +247,65 @@
       transform: translateY(-4px);
       border-color: var(--border-strong);
       box-shadow: var(--shadow);
+    }
+
+    .project-image {
+      min-height: 270px;
+      padding: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-image.productive {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 204, 77, 0.18),
+          transparent 58%
+        ),
+        #15120a;
+    }
+
+    .project-image.dissent {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 106, 26, 0.18),
+          transparent 58%
+        ),
+        #140b08;
+    }
+
+    .placeholder-symbol {
+      width: 118px;
+      height: 118px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+      background: rgba(255, 255, 255, 0.06);
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+
+      font-size: 2.5rem;
+      font-weight: 900;
+
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .project-content {
+      flex: 1;
+      padding: 28px;
+
+      display: flex;
+      flex-direction: column;
     }
 
     .project-card h2 {
@@ -264,10 +323,11 @@
     .status-pill {
       display: inline-flex;
       align-items: center;
+      gap: 8px;
 
       width: fit-content;
-      margin-top: 16px;
-      padding: 6px 10px;
+      margin-top: 18px;
+      padding: 7px 11px;
 
       color: var(--muted);
       background: rgba(255, 255, 255, 0.035);
@@ -277,9 +337,25 @@
 
       font-size: 0.72rem;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       line-height: 1;
       text-transform: uppercase;
+    }
+
+    .status-pill.active {
+      color: #d7ffdf;
+      background: rgba(101, 210, 139, 0.11);
+      border-color: rgba(101, 210, 139, 0.25);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+
+      background: var(--green);
+      border-radius: 50%;
+
+      box-shadow: 0 0 12px rgba(101, 210, 139, 0.75);
     }
 
     footer {
@@ -299,6 +375,10 @@
 
       .projects-grid {
         grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        min-height: 0;
       }
     }
 
@@ -324,6 +404,10 @@
       .card {
         border-radius: 18px;
       }
+
+      .project-image {
+        min-height: 230px;
+      }
     }
   </style>
 </head>
@@ -341,8 +425,8 @@
       </a>
 
       <nav aria-label="Main navigation">
-        <a href="index.html#mission">Mission</a>
         <a href="index.html#projects">Projects</a>
+        <a href="index.html#principles">Studio</a>
         <a href="index.html#privacy">Privacy</a>
         <a href="index.html#contact">Contact</a>
       </nav>
@@ -360,8 +444,9 @@
       </h1>
 
       <p>
-        Independent game projects built around player agency, pressure,
-        consequence, and meaningful decisions.
+        Independent game projects built around work, pressure, consequence,
+        survival, and the choices people make inside systems larger than
+        themselves.
       </p>
 
       <div class="hero-actions">
@@ -374,24 +459,64 @@
     <section>
       <div class="projects-grid">
         <article class="card project-card">
-          <div>
-            <span class="category-label">
-              Game Development
-            </span>
+          <div class="project-image productive">
+            <div class="placeholder-symbol">
+              DP
+            </div>
+          </div>
 
-            <h2>
-              State of Dissent
-            </h2>
+          <div class="project-content">
+            <div>
+              <span class="category-label">
+                Satirical Office Game
+              </span>
 
-            <p>
-              A tense low-poly survival experience built around work, family,
-              limited time, pressure, resistance, and the consequences of
-              everyday choices.
-            </p>
+              <h2>
+                Definitely Productive
+              </h2>
 
-            <span class="status-pill">
-              In development
-            </span>
+              <p>
+                A satirical office-life game about surviving the workweek,
+                managing energy and stress, completing enough work to stay
+                employed, appearing productive, and climbing a deeply
+                questionable corporate ladder.
+              </p>
+
+              <span class="status-pill active">
+                <span class="status-dot"></span>
+                Active development
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project-card">
+          <div class="project-image dissent">
+            <div class="placeholder-symbol">
+              SD
+            </div>
+          </div>
+
+          <div class="project-content">
+            <div>
+              <span class="category-label">
+                Narrative Survival Game
+              </span>
+
+              <h2>
+                State of Dissent
+              </h2>
+
+              <p>
+                A tense low-poly narrative survival experience built around
+                work, family, limited time, resistance, and the consequences
+                of ordinary choices made under extraordinary pressure.
+              </p>
+
+              <span class="status-pill">
+                Long-term development
+              </span>
+            </div>
           </div>
         </article>
       </div>
@@ -399,7 +524,7 @@
   </main>
 
   <footer>
-    © 2026 Tiny Rebellion Studios. Built with privacy-first principles.
+    © 2026 Tiny Rebellion Studios. Independently designed and developed.
   </footer>
 </body>
 </html>
