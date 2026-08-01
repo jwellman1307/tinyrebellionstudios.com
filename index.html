@@ -314,8 +314,9 @@
     }
 
     .project-visual {
-      min-height: 360px;
+      min-height: 430px;
       padding: 28px;
+      overflow: hidden;
 
       display: flex;
       align-items: center;
@@ -333,74 +334,141 @@
       border-radius: 24px;
     }
 
-    .phone-placeholder {
-      width: min(230px, 80%);
-      aspect-ratio: 9 / 18.5;
-      padding: 14px;
+    .phone-stack {
+      position: relative;
+      width: min(100%, 470px);
+      height: 390px;
+    }
 
+    .phone-shot {
+      position: absolute;
+      width: 190px;
+      filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.55));
+      transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+    }
+
+    .phone-shot:hover {
+      z-index: 5;
+      transform: translateY(-8px) scale(1.03);
+      filter: drop-shadow(0 30px 46px rgba(0, 0, 0, 0.68));
+    }
+
+    .phone-shot.left {
+      left: 3%;
+      top: 42px;
+      transform: rotate(-6deg);
+    }
+
+    .phone-shot.center {
+      left: 50%;
+      top: 0;
+      z-index: 3;
+      transform: translateX(-50%);
+      width: 215px;
+    }
+
+    .phone-shot.right {
+      right: 3%;
+      top: 42px;
+      transform: rotate(6deg);
+    }
+
+    .between-checks-details {
+      padding-top: 34px;
+    }
+
+    .feature-showcase {
+      display: grid;
+      gap: 26px;
+    }
+
+    .showcase-row {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      align-items: center;
+      gap: 46px;
+      padding: 36px;
+
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.02)
+      );
+
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .showcase-row.reverse {
+      grid-template-columns: 1.18fr 0.82fr;
+    }
+
+    .showcase-row.reverse .showcase-image {
+      order: 2;
+    }
+
+    .showcase-image {
       display: flex;
-      flex-direction: column;
-
-      background: #07100d;
-
-      border: 4px solid #272f2c;
-      border-radius: 30px;
-
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+      justify-content: center;
+      min-width: 0;
     }
 
-    .phone-speaker {
-      width: 54px;
-      height: 5px;
-      margin: 0 auto 18px;
-
-      background: #36433e;
-      border-radius: 999px;
+    .showcase-image img {
+      width: min(100%, 270px);
+      filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.5));
     }
 
-    .mock-screen {
-      flex: 1;
-      padding: 18px;
+    .showcase-copy h3 {
+      margin: 10px 0 14px;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .showcase-copy p {
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .screen-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .screen-card {
+      padding: 20px 18px 18px;
+      text-align: center;
 
       background: linear-gradient(
         180deg,
-        rgba(101, 210, 139, 0.16),
-        rgba(255, 255, 255, 0.03)
+        rgba(255, 255, 255, 0.065),
+        rgba(255, 255, 255, 0.025)
       );
 
-      border-radius: 19px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
     }
 
-    .mock-title {
-      margin-bottom: 18px;
-
-      color: #d9ffea;
-      font-size: 1.05rem;
-      font-weight: 800;
+    .screen-card img {
+      width: min(100%, 220px);
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.48));
     }
 
-    .mock-amount {
+    .screen-card h3 {
       margin-bottom: 6px;
-
-      color: #ffffff;
-      font-size: 2rem;
-      font-weight: 900;
+      font-size: 1.08rem;
     }
 
-    .mock-label {
-      margin-bottom: 22px;
-
-      color: #91a99f;
-      font-size: 0.78rem;
-    }
-
-    .mock-row {
-      height: 42px;
-      margin-top: 10px;
-
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
+    .screen-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
     .featured-copy h2 {
@@ -773,8 +841,18 @@
       }
 
       .project-grid,
-      .principles-grid {
+      .principles-grid,
+      .screen-gallery {
         grid-template-columns: 1fr;
+      }
+
+      .showcase-row,
+      .showcase-row.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase-row.reverse .showcase-image {
+        order: 0;
       }
 
       .project-card {
@@ -819,8 +897,25 @@
         padding: 18px;
       }
 
-      .phone-placeholder {
-        width: 195px;
+      .phone-stack {
+        height: 330px;
+      }
+
+      .phone-shot {
+        width: 145px;
+      }
+
+      .phone-shot.center {
+        width: 170px;
+      }
+
+      .phone-shot.left,
+      .phone-shot.right {
+        top: 48px;
+      }
+
+      .showcase-row {
+        padding: 24px;
       }
 
       .privacy,
@@ -913,33 +1008,24 @@
 
       <article class="featured-project">
         <div class="project-visual">
-          <!--
-            Replace this phone placeholder with a real screenshot later.
-
-            Example:
+          <div class="phone-stack" aria-label="Between Checks app preview">
+            <img
+              class="phone-shot left"
+              src="Images/SpendingBreakdown_LM.png"
+              alt="Between Checks spending breakdown"
+            />
 
             <img
-              src="Images/BetweenChecksDashboard.png"
+              class="phone-shot center"
+              src="Images/Dashboard_LM.png"
               alt="Between Checks dashboard"
             />
-          -->
 
-          <div class="phone-placeholder">
-            <div class="phone-speaker"></div>
-
-            <div class="mock-screen">
-              <div class="mock-title">Between Checks</div>
-
-              <div class="mock-amount">$427.50</div>
-
-              <div class="mock-label">
-                Available until your next check
-              </div>
-
-              <div class="mock-row"></div>
-              <div class="mock-row"></div>
-              <div class="mock-row"></div>
-            </div>
+            <img
+              class="phone-shot right"
+              src="Images/WhatIf_LM.png"
+              alt="Between Checks What if I spend tool"
+            />
           </div>
         </div>
 
@@ -967,16 +1053,162 @@
             <li>No bank connection or account required</li>
           </ul>
 
-          <!--
-            This currently links to your existing SpendGuard page.
-            Rename spendguard.html later if you decide to change the filename.
-          -->
-
-          <a class="button primary" href="spendguard.html">
-            Explore Between Checks →
+          <a class="button primary" href="#between-checks-details">
+            See Between Checks Features →
           </a>
         </div>
       </article>
+    </section>
+
+    <!-- Between Checks details -->
+
+    <section id="between-checks-details" class="between-checks-details">
+      <div class="section-heading">
+        <span class="section-kicker">
+          Between Checks
+        </span>
+
+        <h2>
+          A clearer view of the money you have right now.
+        </h2>
+
+        <p>
+          Between Checks is built for people who need a useful answer to one
+          immediate question: what can I safely spend before I get paid again?
+          The app keeps the calculation understandable and stores budgeting
+          information locally on the device.
+        </p>
+      </div>
+
+      <div class="feature-showcase">
+        <article class="showcase-row">
+          <div class="showcase-image">
+            <img
+              src="Images/SpendingBreakdown_LM.png"
+              alt="Spending breakdown showing cash available, bills, cushion, and Safe to Spend"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="showcase-copy">
+            <span class="project-type">
+              Understand the number
+            </span>
+
+            <h3>
+              See exactly where Safe to Spend comes from.
+            </h3>
+
+            <p>
+              The spending breakdown separates available cash, bills due before
+              payday, and an optional cash cushion so the final amount is easy
+              to follow instead of hidden behind a complicated budget.
+            </p>
+          </div>
+        </article>
+
+        <article class="showcase-row reverse">
+          <div class="showcase-image">
+            <img
+              src="Images/WhatIf_LM.png"
+              alt="What if I spend tool projecting a possible purchase"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="showcase-copy">
+            <span class="project-type">
+              Plan before buying
+            </span>
+
+            <h3>
+              Test a purchase before it changes your balance.
+            </h3>
+
+            <p>
+              The What if I spend tool previews how a purchase would affect
+              available cash, Safe to Spend, and the daily amount remaining
+              before the next paycheck.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="section-heading" style="margin-top: 64px;">
+        <span class="section-kicker">
+          Core Screens
+        </span>
+
+        <h2>
+          Income, bills, expenses, and history in one place.
+        </h2>
+
+        <p>
+          The app stays focused on the current pay period while still giving
+          users the records and controls needed to keep the numbers accurate.
+        </p>
+      </div>
+
+      <div class="screen-gallery">
+        <article class="screen-card">
+          <img
+            src="Images/Income_LM.png"
+            alt="Between Checks income screen"
+            loading="lazy"
+          />
+
+          <h3>Income</h3>
+
+          <p>
+            Add multiple income sources and choose the one that drives the
+            dashboard pay-period calculation.
+          </p>
+        </article>
+
+        <article class="screen-card">
+          <img
+            src="Images/Bill_LM.png"
+            alt="Between Checks bills screen"
+            loading="lazy"
+          />
+
+          <h3>Bills</h3>
+
+          <p>
+            Track one-time and recurring bills and see what is due before the
+            next payday.
+          </p>
+        </article>
+
+        <article class="screen-card">
+          <img
+            src="Images/Expenses_LM.png"
+            alt="Between Checks expenses screen"
+            loading="lazy"
+          />
+
+          <h3>Expenses</h3>
+
+          <p>
+            Log everyday spending manually without connecting a bank account.
+          </p>
+        </article>
+
+        <article class="screen-card">
+          <img
+            src="Images/History_LM.png"
+            alt="Between Checks transaction history"
+            loading="lazy"
+          />
+
+          <h3>History</h3>
+
+          <p>
+            Review income, purchases, bill payments, and balance changes over
+            time.
+          </p>
+        </article>
+      </div>
     </section>
 
     <!-- Additional projects -->
