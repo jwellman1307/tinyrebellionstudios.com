@@ -4,74 +4,832 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tiny Rebellion Studios</title>
-  <meta name="description" content="Tiny Rebellion Studios creates practical mobile apps and independent games built around real problems, meaningful choices, and user control." />
+  <meta
+    name="description"
+    content="Tiny Rebellion Studios creates practical mobile apps and independent games built around real problems, meaningful choices, and user control."
+  />
+
   <style>
     :root {
-      --bg:#050505; --bg-soft:#0d0d0d; --card:#151515; --text:#f5f5f5; --muted:#b8b8b8;
-      --orange:#ff6a1a; --gold:#ffcc4d; --green:#65d28b; --blue:#73b7ff;
-      --border:rgba(255,255,255,.12); --border-strong:rgba(255,170,70,.28);
-      --shadow:0 20px 60px rgba(255,106,26,.14); --shadow-soft:0 16px 42px rgba(0,0,0,.32);
+      --bg: #050505;
+      --bg-soft: #0d0d0d;
+      --card: #151515;
+      --text: #f5f5f5;
+      --muted: #b8b8b8;
+      --orange: #ff6a1a;
+      --gold: #ffcc4d;
+      --green: #65d28b;
+      --blue: #73b7ff;
+      --border: rgba(255, 255, 255, 0.12);
+      --border-strong: rgba(255, 170, 70, 0.28);
+      --shadow: 0 20px 60px rgba(255, 106, 26, 0.14);
+      --shadow-soft: 0 16px 42px rgba(0, 0, 0, 0.32);
     }
-    *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
-    body{min-height:100vh;font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:var(--text);background:radial-gradient(circle at top,rgba(255,106,26,.18),transparent 34%),radial-gradient(circle at 82% 72%,rgba(255,204,77,.07),transparent 24%),var(--bg)}
-    a{color:inherit;text-decoration:none} img{display:block;max-width:100%}
-    header{position:sticky;top:0;z-index:20;background:rgba(5,5,5,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-    .nav{max-width:1180px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .brand{display:flex;align-items:center;gap:12px;font-size:.9rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.brand img{width:42px;height:42px;object-fit:contain}
-    nav{display:flex;align-items:center;gap:22px;color:var(--muted);font-size:.95rem}nav a:hover{color:var(--orange)}
-    main{overflow:hidden}.hero{max-width:1180px;margin:0 auto;padding:96px 24px 76px;display:grid;grid-template-columns:1.06fr .94fr;align-items:center;gap:64px}
-    .eyebrow,.section-kicker,.project-type{color:var(--orange);font-size:.8rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.eyebrow{margin-bottom:18px}
-    h1{max-width:800px;margin-bottom:24px;font-size:clamp(2.9rem,7vw,5.9rem);line-height:.95;letter-spacing:-.06em}.hero-text{max-width:700px;margin-bottom:32px;color:var(--muted);font-size:1.16rem}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:14px}.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border:1px solid var(--border);border-radius:999px;font-weight:800;transition:.2s}.button.primary{color:#111;background:linear-gradient(135deg,var(--orange),var(--gold));border:none}.button.secondary{background:rgba(255,255,255,.04)}.button:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-    .logo-card{padding:36px;background:radial-gradient(circle at center,rgba(255,106,26,.22),transparent 58%),rgba(255,255,255,.03);border:1px solid var(--border);border-radius:30px;box-shadow:var(--shadow)}.logo-card img{width:100%;border-radius:18px}
-    section{max-width:1180px;margin:0 auto;padding:72px 24px}.section-heading{max-width:790px;margin-bottom:34px}.section-kicker{display:inline-block;margin-bottom:12px}.section-heading h2{margin-bottom:14px;font-size:clamp(2rem,4vw,3.15rem);line-height:1.05;letter-spacing:-.04em}.section-heading p{color:var(--muted);font-size:1.05rem}
-    .category-block{padding:34px;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow-soft)}.category-block+.category-block{margin-top:28px}
-    .category-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}.category-head h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em}.category-head p{max-width:650px;color:var(--muted)}
-    .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.project-card{overflow:hidden;display:flex;flex-direction:column;min-height:500px;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow-soft);transition:.22s}.project-card:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:var(--shadow)}
-    .project-image{min-height:255px;padding:24px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}.project-image.bc{background:radial-gradient(circle at center,rgba(101,210,139,.19),transparent 58%),#0b1110}.project-image.dp{background:radial-gradient(circle at center,rgba(255,204,77,.17),transparent 58%),#15120a}.project-image.offsync{background:radial-gradient(circle at center,rgba(115,183,255,.17),transparent 58%),#08101a}.project-image.dissent{background:radial-gradient(circle at center,rgba(255,106,26,.18),transparent 58%),#140b08}
-    .project-image img{max-height:235px;width:auto;filter:drop-shadow(0 20px 28px rgba(0,0,0,.46))}.placeholder-symbol{width:118px;height:118px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.12);border-radius:28px;background:rgba(255,255,255,.06);font-size:2.3rem;font-weight:900;box-shadow:0 18px 40px rgba(0,0,0,.28)}
-    .project-content{flex:1;padding:28px;display:flex;flex-direction:column}.project-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}.project-status{padding:6px 10px;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:999px;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.project-status.active{color:#d7ffdf;background:rgba(101,210,139,.11);border-color:rgba(101,210,139,.25)}
-    .project-card h3{margin-bottom:12px;font-size:1.8rem;letter-spacing:-.03em}.project-card p{color:var(--muted);margin-bottom:24px}.project-link{margin-top:auto;color:var(--gold);font-weight:800}.project-link:hover{color:var(--orange)}
-    .principles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.principle-card{padding:28px;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow-soft)}.principle-number{color:var(--orange);font-size:.8rem;font-weight:900;letter-spacing:.12em}.principle-card h3{margin:10px 0;font-size:1.45rem}.principle-card p{color:var(--muted)}
-    .privacy{padding:44px;background:linear-gradient(135deg,rgba(255,106,26,.17),rgba(255,204,77,.07)),var(--card);border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow)}.privacy h2{margin-bottom:18px;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em}.privacy p{max-width:900px;color:var(--muted);font-size:1.08rem}
-    .contact-box{padding:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:radial-gradient(circle at 90% 50%,rgba(255,106,26,.12),transparent 30%),var(--bg-soft);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow-soft)}.contact-box h2{margin-bottom:6px;font-size:2rem}.contact-box p{color:var(--muted)}
-    footer{padding:28px 24px;color:var(--muted);text-align:center;font-size:.9rem;border-top:1px solid var(--border)}
-    @media(max-width:950px){nav{display:none}.hero{grid-template-columns:1fr}.project-grid,.principles-grid{grid-template-columns:1fr}.category-head,.contact-box{align-items:flex-start;flex-direction:column}.logo-card{max-width:520px}}
-    @media(max-width:560px){.nav{padding:14px 18px}.brand span{font-size:.76rem}.hero,section{padding-left:18px;padding-right:18px}.button{width:100%}.category-block{padding:22px}.project-card,.principle-card,.privacy,.contact-box,.logo-card{border-radius:18px}}
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(255, 106, 26, 0.18), transparent 34%),
+        radial-gradient(circle at 82% 72%, rgba(255, 204, 77, 0.07), transparent 24%),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(5, 5, 5, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 96px 24px 76px;
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .project-type {
+      color: var(--orange);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      max-width: 800px;
+      margin-bottom: 24px;
+      font-size: clamp(2.9rem, 7vw, 5.9rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    .hero-text {
+      max-width: 700px;
+      margin-bottom: 32px;
+      color: var(--muted);
+      font-size: 1.16rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      white-space: nowrap;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-weight: 800;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .button.primary {
+      color: #111;
+      background: linear-gradient(135deg, var(--orange), var(--gold));
+      border: none;
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    .logo-card {
+      padding: 36px;
+      background:
+        radial-gradient(circle at center, rgba(255, 106, 26, 0.22), transparent 58%),
+        rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .logo-card img {
+      width: 100%;
+      border-radius: 18px;
+    }
+
+    section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .section-heading {
+      max-width: 790px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 14px;
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .category-block {
+      padding: 34px;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.065),
+        rgba(255, 255, 255, 0.02)
+      );
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .category-block + .category-block {
+      margin-top: 28px;
+    }
+
+    .category-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .category-head h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.04em;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 500px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.065),
+        rgba(255, 255, 255, 0.025)
+      );
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .project-image {
+      min-height: 255px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-image.bc {
+      background:
+        radial-gradient(circle at center, rgba(101, 210, 139, 0.19), transparent 58%),
+        #0b1110;
+    }
+
+    .project-image.dp {
+      background:
+        radial-gradient(circle at center, rgba(255, 204, 77, 0.17), transparent 58%),
+        #15120a;
+    }
+
+    .project-image.offsync {
+      background:
+        radial-gradient(circle at center, rgba(115, 183, 255, 0.17), transparent 58%),
+        #08101a;
+    }
+
+    .project-image.dissent {
+      padding: 0;
+      background:
+        radial-gradient(circle at center, rgba(255, 106, 26, 0.18), transparent 58%),
+        #140b08;
+    }
+
+    .project-image img {
+      max-height: 235px;
+      width: auto;
+      filter: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.46));
+    }
+
+    .project-image.dissent img {
+      width: 100%;
+      height: 255px;
+      max-height: none;
+      object-fit: cover;
+      filter: none;
+    }
+
+    .placeholder-symbol {
+      width: 118px;
+      height: 118px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 2.3rem;
+      font-weight: 900;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .project-content {
+      flex: 1;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .project-status {
+      padding: 6px 10px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .project-status.active {
+      color: #d7ffdf;
+      background: rgba(101, 210, 139, 0.11);
+      border-color: rgba(101, 210, 139, 0.25);
+    }
+
+    .project-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.8rem;
+      letter-spacing: -0.03em;
+    }
+
+    .project-card p {
+      margin-bottom: 24px;
+      color: var(--muted);
+    }
+
+    .project-link {
+      margin-top: auto;
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    .project-link:hover {
+      color: var(--orange);
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .principle-card {
+      padding: 28px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.065),
+        rgba(255, 255, 255, 0.025)
+      );
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .principle-number {
+      color: var(--orange);
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .principle-card h3 {
+      margin: 10px 0;
+      font-size: 1.45rem;
+    }
+
+    .principle-card p {
+      color: var(--muted);
+    }
+
+    .privacy {
+      padding: 44px;
+      background:
+        linear-gradient(135deg, rgba(255, 106, 26, 0.17), rgba(255, 204, 77, 0.07)),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .privacy h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.04em;
+    }
+
+    .privacy p {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .contact-box {
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      background:
+        radial-gradient(circle at 90% 50%, rgba(255, 106, 26, 0.12), transparent 30%),
+        var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-box h2 {
+      margin-bottom: 6px;
+      font-size: 2rem;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 28px 24px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 950px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid,
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-head,
+      .contact-box {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .logo-card {
+        max-width: 520px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        padding: 14px 18px;
+      }
+
+      .brand span {
+        font-size: 0.76rem;
+      }
+
+      .hero,
+      section {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .category-block {
+        padding: 22px;
+      }
+
+      .project-card,
+      .principle-card,
+      .privacy,
+      .contact-box,
+      .logo-card {
+        border-radius: 18px;
+      }
+    }
   </style>
 </head>
+
 <body>
-<header><div class="nav"><a class="brand" href="index.html"><img src="Images/LogoIcon.png" alt="Tiny Rebellion Studios icon"/><span>Tiny Rebellion Studios</span></a><nav aria-label="Main navigation"><a href="#projects">Projects</a><a href="#principles">Studio</a><a href="#privacy">Privacy</a><a href="#contact">Contact</a></nav></div></header>
-<main>
-  <section class="hero">
-    <div><p class="eyebrow">Independent apps and games</p><h1>Small projects with something real to say.</h1><p class="hero-text">Tiny Rebellion Studios creates practical apps and systems-driven games inspired by real-life pressure, difficult choices, work, money, survival, and the small decisions that shape everyday life.</p><div class="hero-actions"><a class="button primary" href="apps.html">Explore Apps →</a><a class="button secondary" href="games.html">Explore Games →</a></div></div>
-    <div class="logo-card"><img src="Images/LogoBlack.png" alt="Tiny Rebellion Studios logo"/></div>
-  </section>
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <img src="Images/LogoIcon.png" alt="Tiny Rebellion Studios icon" />
+        <span>Tiny Rebellion Studios</span>
+      </a>
 
-  <section id="projects">
-    <div class="section-heading"><span class="section-kicker">Studio Projects</span><h2>Apps for practical problems. Games about meaningful choices.</h2><p>The homepage gives a clear view of the studio. Each category page goes deeper into the projects, features, and screenshots.</p></div>
-
-    <div class="category-block">
-      <div class="category-head"><div><span class="section-kicker">Apps</span><h2>Focused tools with a clear purpose.</h2></div><a class="button secondary" href="apps.html">View All Apps →</a></div>
-      <div class="project-grid">
-        <article class="project-card"><div class="project-image bc"><img src="Images/Dashboard_LM.png" alt="Between Checks dashboard"/></div><div class="project-content"><div class="project-meta"><span class="project-type">Android App</span><span class="project-status active">Preparing for release</span></div><h3>Between Checks</h3><p>A paycheck-focused budgeting app that helps people understand what they can safely spend before their next payday without connecting a bank account.</p><a class="project-link" href="apps.html#between-checks">Explore Between Checks →</a></div></article>
-        <article class="project-card"><div class="project-image offsync"><div class="placeholder-symbol">OS</div></div><div class="project-content"><div class="project-meta"><span class="project-type">Schedule App</span><span class="project-status">Early development</span></div><h3>OffSync</h3><p>A schedule-matching concept for couples, families, friends, and teams trying to find the days they are actually free together.</p><a class="project-link" href="apps.html#offsync">Explore OffSync →</a></div></article>
-      </div>
+      <nav aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#principles">Studio</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="category-block">
-      <div class="category-head"><div><span class="section-kicker">Games</span><h2>Stories shaped by systems and choices.</h2></div><a class="button secondary" href="games.html">View All Games →</a></div>
-      <div class="project-grid">
-        <article class="project-card"><div class="project-image dp"><img src="Images/DP-MainScreen.png" alt="Definitely Productive main screen"/></div><div class="project-content"><div class="project-meta"><span class="project-type">Satirical Office Game</span><span class="project-status active">In development</span></div><h3>Definitely Productive</h3><p>A satirical office-life game about surviving the workweek, managing stress and energy, and climbing a deeply questionable corporate ladder.</p><a class="project-link" href="games.html#definitely-productive">Explore Definitely Productive →</a></div></article>
-        <article class="project-card"><div class="project-image dissent"><div class="placeholder-symbol">SD</div></div><div class="project-content"><div class="project-meta"><span class="project-type">Narrative Survival Game</span><span class="project-status">Long-term development</span></div><h3>State of Dissent</h3><p>A narrative survival project about work, family, limited time, resistance, and the consequences of ordinary choices made under pressure.</p><a class="project-link" href="games.html#state-of-dissent">Explore State of Dissent →</a></div></article>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Independent apps and games</p>
+
+        <h1>Small projects with something real to say.</h1>
+
+        <p class="hero-text">
+          Tiny Rebellion Studios creates practical apps and systems-driven
+          games inspired by real-life pressure, difficult choices, work,
+          money, survival, and the small decisions that shape everyday life.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="apps.html">
+            <span>Explore Apps</span>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a class="button secondary" href="games.html">
+            <span>Explore Games</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <section id="principles"><div class="section-heading"><span class="section-kicker">The Studio</span><h2>Built independently and with intention.</h2><p>Every project starts with a recognizable problem, pressure, or experience rather than a list of features looking for a purpose.</p></div><div class="principles-grid"><article class="principle-card"><span class="principle-number">01</span><h3>Practical</h3><p>Apps solve focused, understandable problems without unnecessary complexity.</p></article><article class="principle-card"><span class="principle-number">02</span><h3>Meaningful</h3><p>Games are built around systems, consequences, and recognizable human experiences.</p></article><article class="principle-card"><span class="principle-number">03</span><h3>Respectful</h3><p>Products should be clear about what they do, what they store, and what they ask from the user.</p></article></div></section>
-  <section id="privacy"><div class="privacy"><span class="section-kicker">Privacy</span><h2>Privacy where it matters.</h2><p>Tiny Rebellion Studios avoids unnecessary accounts, tracking, cloud storage, and personal-data collection whenever a product can work without them. Between Checks stores budgeting information locally and does not require a bank connection.</p></div></section>
-  <section id="contact"><div class="contact-box"><div><span class="section-kicker">Contact</span><h2>Questions, feedback, or support?</h2><p>Send an email and include the project name in the subject line.</p></div><a class="button primary" href="mailto:tinyrebellionstudios@gmail.com">Email the Studio →</a></div></section>
-</main>
-<footer>© 2026 Tiny Rebellion Studios. Independently designed and developed.</footer>
+      <div class="logo-card">
+        <img src="Images/LogoBlack.png" alt="Tiny Rebellion Studios logo" />
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-heading">
+        <span class="section-kicker">Studio Projects</span>
+
+        <h2>Apps for practical problems. Games about meaningful choices.</h2>
+
+        <p>
+          Explore the studio at a glance here, then open the Apps or Games page
+          for detailed screenshots and project information.
+        </p>
+      </div>
+
+      <div class="category-block">
+        <div class="category-head">
+          <div>
+            <span class="section-kicker">Apps</span>
+            <h2>Focused tools with a clear purpose.</h2>
+          </div>
+
+          <a class="button secondary" href="apps.html">
+            <span>View All Apps</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-image bc">
+              <img
+                src="Images/Dashboard_LM.png"
+                alt="Between Checks dashboard"
+              />
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">Android App</span>
+                <span class="project-status active">Preparing for release</span>
+              </div>
+
+              <h3>Between Checks</h3>
+
+              <p>
+                A paycheck-focused budgeting app that helps people understand
+                what they can safely spend before their next payday without
+                connecting a bank account.
+              </p>
+
+              <a class="project-link" href="apps.html#between-checks">
+                Explore Between Checks →
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image offsync">
+              <div class="placeholder-symbol">OS</div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">Schedule App</span>
+                <span class="project-status">Early development</span>
+              </div>
+
+              <h3>OffSync</h3>
+
+              <p>
+                A schedule-matching concept for couples, families, friends, and
+                teams trying to find the days they are actually free together.
+              </p>
+
+              <a class="project-link" href="apps.html#offsync">
+                Explore OffSync →
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="category-block">
+        <div class="category-head">
+          <div>
+            <span class="section-kicker">Games</span>
+            <h2>Stories shaped by systems and choices.</h2>
+          </div>
+
+          <a class="button secondary" href="games.html">
+            <span>View All Games</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-image dp">
+              <img
+                src="Images/DP-MainScreen.png"
+                alt="Definitely Productive main screen"
+              />
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">Satirical Office Game</span>
+                <span class="project-status active">In development</span>
+              </div>
+
+              <h3>Definitely Productive</h3>
+
+              <p>
+                A satirical office-life game about surviving the workweek,
+                managing stress and energy, and climbing a deeply questionable
+                corporate ladder.
+              </p>
+
+              <a class="project-link" href="games.html#definitely-productive">
+                Explore Definitely Productive →
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image dissent">
+              <img
+                src="Images/SOD-Plaza.png"
+                alt="State of Dissent city plaza"
+              />
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-type">Narrative Survival Game</span>
+                <span class="project-status">Long-term development</span>
+              </div>
+
+              <h3>State of Dissent</h3>
+
+              <p>
+                A narrative survival project about work, family, limited time,
+                resistance, and the consequences of ordinary choices made
+                under pressure.
+              </p>
+
+              <a class="project-link" href="games.html#state-of-dissent">
+                Explore State of Dissent →
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="principles">
+      <div class="section-heading">
+        <span class="section-kicker">The Studio</span>
+
+        <h2>Built independently and with intention.</h2>
+
+        <p>
+          Every project starts with a recognizable problem, pressure, or
+          experience rather than a list of features looking for a purpose.
+        </p>
+      </div>
+
+      <div class="principles-grid">
+        <article class="principle-card">
+          <span class="principle-number">01</span>
+          <h3>Practical</h3>
+          <p>
+            Apps solve focused, understandable problems without unnecessary
+            complexity.
+          </p>
+        </article>
+
+        <article class="principle-card">
+          <span class="principle-number">02</span>
+          <h3>Meaningful</h3>
+          <p>
+            Games are built around systems, consequences, and recognizable
+            human experiences.
+          </p>
+        </article>
+
+        <article class="principle-card">
+          <span class="principle-number">03</span>
+          <h3>Respectful</h3>
+          <p>
+            Products should be clear about what they do, what they store, and
+            what they ask from the user.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="privacy">
+        <span class="section-kicker">Privacy</span>
+
+        <h2>Privacy where it matters.</h2>
+
+        <p>
+          Tiny Rebellion Studios avoids unnecessary accounts, tracking, cloud
+          storage, and personal-data collection whenever a product can work
+          without them. Between Checks stores budgeting information locally and
+          does not require a bank connection.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-box">
+        <div>
+          <span class="section-kicker">Contact</span>
+          <h2>Questions, feedback, or support?</h2>
+          <p>Send an email and include the project name in the subject line.</p>
+        </div>
+
+        <a
+          class="button primary"
+          href="mailto:tinyrebellionstudios@gmail.com"
+        >
+          <span>Email the Studio</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Tiny Rebellion Studios. Independently designed and developed.
+  </footer>
 </body>
 </html>
