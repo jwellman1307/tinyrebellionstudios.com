@@ -452,6 +452,25 @@
       margin-top: 22px;
     }
 
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-weight: 800;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .github-link span {
+      color: var(--orange);
+      font-size: 1.1rem;
+    }
+
+    .github-link:hover {
+      color: var(--orange);
+      transform: translateX(2px);
+    }
+
     .dissent-showcase {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -832,13 +851,13 @@
 
             <div class="project-actions">
               <a
-                class="button"
+                class="github-link"
                 href="https://github.com/jwellman1307/State-of-Dissent-DevLog"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View Development Log on GitHub
-                <span aria-hidden="true">↗</span>
+                View development on GitHub
+                <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>
