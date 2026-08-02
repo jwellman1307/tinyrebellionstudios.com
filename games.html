@@ -365,14 +365,37 @@
       color: var(--muted);
     }
 
+    .dissent-section {
+      margin-top: 30px;
+      margin-bottom: 68px;
+      background:
+        radial-gradient(circle at 18% 24%, rgba(255, 106, 26, 0.16), transparent 34%),
+        linear-gradient(145deg, rgba(255, 106, 26, 0.07), rgba(255, 255, 255, 0.018));
+      border: 1px solid rgba(255, 106, 26, 0.22);
+      border-radius: 32px;
+      box-shadow: 0 24px 70px rgba(255, 106, 26, 0.12);
+    }
+
+    .dissent-section .section-heading {
+      max-width: 900px;
+    }
+
+    .dissent-section .section-heading h2 {
+      font-size: clamp(2.7rem, 5.5vw, 4.6rem);
+    }
+
+    .dissent-section .section-kicker {
+      text-shadow: 0 0 20px rgba(255, 106, 26, 0.45);
+    }
+
     .dissent-feature {
       padding: 40px;
       background: linear-gradient(
         145deg,
-        rgba(255, 106, 26, 0.12),
-        rgba(255, 255, 255, 0.02)
+        rgba(255, 106, 26, 0.19),
+        rgba(255, 255, 255, 0.025)
       );
-      border: 1px solid rgba(255, 106, 26, 0.22);
+      border: 1px solid rgba(255, 106, 26, 0.34);
       border-radius: 28px;
       box-shadow: var(--shadow-soft);
     }
@@ -580,7 +603,7 @@
         <a href="index.html#projects">Projects</a>
         <a href="apps.html">Apps</a>
         <a href="index.html#principles">Studio</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="index.html#privacy">Privacy</a><a href="index.html#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -764,15 +787,15 @@
       </div>
     </section>
 
-    <section id="state-of-dissent">
+    <section id="state-of-dissent" class="dissent-section">
       <div class="section-heading">
         <span class="section-kicker">State of Dissent</span>
 
         <h2>Ordinary choices under extraordinary pressure.</h2>
 
         <p>
-          A long-term narrative survival project about work, family, limited
-          time, resistance, and the consequences of living inside an
+          A long-term narrative survival game about work, family, resistance,
+          limited time, and the consequences of trying to live inside an
           increasingly hostile system.
         </p>
       </div>
@@ -792,8 +815,8 @@
             <h2>Live inside the pressure.</h2>
 
             <p>
-              State of Dissent combines exploration, conversations, daily
-              survival, and personal obligations. The player moves through a
+              State of Dissent combines exploration, conversation, daily
+              survival, and personal obligation. The player moves through a
               city where ordinary routines, family relationships, and growing
               political pressure all compete for limited time and attention.
             </p>
@@ -811,7 +834,7 @@
             />
 
             <div class="dissent-card-copy">
-              <h3>Choices inside personal relationships</h3>
+              <h3>Personal choices under public pressure</h3>
 
               <p>
                 Conversations place family, obligation, and survival beside
@@ -828,7 +851,7 @@
             />
 
             <div class="dissent-card-copy">
-              <h3>A city organized around daily decisions</h3>
+              <h3>A city shaped by daily decisions</h3>
 
               <p>
                 The hub map connects work, home, public spaces, and the places
